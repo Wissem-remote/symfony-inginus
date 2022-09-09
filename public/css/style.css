@@ -12,7 +12,7 @@
 
 h1{
     font-weight:bold;
-    font-size:5vh;
+    font-size:160%!important;
     color:#1B57A6;
     font-style:italic;
     text-shadow: 0 3px 0 rgba(0, 0, 0, 0.26);
@@ -28,6 +28,7 @@ header {
     height: 10vh;
     background: whitesmoke;
     display: flex;
+    width: 100%;
 }
 .title{
     display: flex;
@@ -43,7 +44,7 @@ header {
 nav a{
     margin-right: 2vw;
     font-weight:bolder;
-    font-size:4vh;
+    font-size:140%;
     font-style:italic;
     color:#333;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.26);
@@ -69,9 +70,13 @@ nav a:hover{
 /* icon nav */
 .icon{
     margin-top: 1%;
+    display: flex;
 }
-    .bx-md {
-    font-size: 2.5rem!important;
-    }
+.bot{
+    display: none;
+}
+.bx-md {
+font-size: 220%!important;
+}
 
 
