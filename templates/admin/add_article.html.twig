@@ -1,0 +1,27 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Admin
+{% endblock %}
+
+{% block body %}
+<div class=" m-auto w-75 form-control mt-4">
+<h1>Ajouter un Article</h1>
+
+{{ form_start(form)}}
+{{ form_row(form.nom)}}
+{{ form_row(form.qte)}}
+{{ form_row(form.prix)}}
+{{ form_row(form.type)}}
+{{ form_row(form.content)}}
+{{ form_row(form.image)}}
+{% if update is defined and update == 'ok' %}
+<button type="submit" class="btn btn-primary">Modifier</button>
+
+{% else%}
+<button type="submit" class="btn btn-primary">Ajouter</button>
+{% endif%}
+{{ form_end(form)}}
+</div>
+
+{% endblock %}
+

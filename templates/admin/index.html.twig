@@ -1,0 +1,84 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+
+<h1 class="p-2">
+	Bienvenue
+</h1>
+
+{% for message in  app.flashes('success_add') %}
+
+	<div class="alert alert-success alert-dismissible success fade show" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+{% endfor %}
+
+
+{% for message in  app.flashes('success_delete') %}
+
+	<div class="alert alert-warning alert-dismissible warning fade show" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+{% endfor %}
+
+{% for message in  app.flashes('success_update') %}
+
+	<div class="alert alert-primary alert-dismissible primary fade show" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+{% endfor %}
+
+<a href="{{path('admin')}}" class="btn btn-primary m-2">
+	Articles
+</a>
+<a href="{{path('admin_tools')}}" class="btn btn-primary m-2">
+	Accessoires
+</a>
+
+
+<table class="table table-dark  table-striped">
+
+
+	<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Nom</th>
+			<th scope="col">Qte Restant</th>
+			<th scope="col">Date création</th>
+			<th scope="col">Prix</th>
+			<th scope="col">Action</th>
+		</tr>
+	</thead>
+
+	<tbody>
+{% for article in  articles %}
+
+			<tr>
+				<th class="ls-lg" scope="row">{{ article.id}}</th>
+				<td>{{ article.nom}}</td>
+				<td>{{ article.qte}}</td>
+				<td>{{ article.createDateAt|date('d-m-Y H-m-s')}}</td>
+				<td>{{ article.prix}} €</td>
+				<td>
+					<a href={{ path('admin_update_article',{id: article.id} )}} class="btn btn-primary">Update</a>
+					<a href={{ path('admin_delete_article',{id: article.id} )}} class="btn btn-warning">Delete</a>
+					<a href={{ path('admin_show_article',{id: article.id} )}} class="btn btn-info">Show</a>
+				</td>
+
+
+				{# Button CRUD #}
+
+			</tr>
+		</tbody>
+	{% endfor %}
+</tbody></table>
+
+{% endblock %}
