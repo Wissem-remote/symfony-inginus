@@ -50,6 +50,7 @@
 	<thead>
 		<tr>
 			<th scope="col">ID</th>
+			<th scope="col">Image</th>
 			<th scope="col">Nom</th>
 			<th scope="col">Qte Restant</th>
 			<th scope="col">Date création</th>
@@ -63,6 +64,7 @@
 
 			<tr>
 				<th class="ls-lg" scope="row">{{ article.id}}</th>
+				<td><img src="{{ asset('uploads/article/'~article.image)}}" with="30" height="30" alt="{{ article.nom}}" /></td>
 				<td>{{ article.nom}}</td>
 				<td>{{ article.qte}}</td>
 				<td>{{ article.createDateAt|date('d-m-Y H-m-s')}}</td>

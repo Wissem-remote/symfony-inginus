@@ -11,11 +11,11 @@
 /* title */
 
 h1{
-    font-weight:bold;
-    font-size:160%!important;
+    font-weight:bolder;
+    font-size:190%!important;
     color:#1B57A6;
     font-style:italic;
-    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.26);
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.26);
 }
 
 h1 span{
@@ -42,9 +42,9 @@ header {
 }
 /* nav */
 nav a{
-    margin-right: 2vw;
+    margin-right: 1vw;
     font-weight:bolder;
-    font-size:140%;
+    font-size:175%;
     font-style:italic;
     color:#333;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.26);
@@ -78,5 +78,51 @@ nav a:hover{
 .bx-md {
 font-size: 220%!important;
 }
+
+/* footer */
+
+
+
+footer{
+    height: 25vh;
+    background: #0F3759;
+    background-image: linear-gradient(360deg, #ffffff38, transparent);
+    text-shadow: 0 0 5px black;
+}
+footer aside{
+    height: 18vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+footer aside a{
+    text-decoration: none;
+    margin-right: 4vw;
+    color: whitesmoke;
+    font-size:large;
+    font-weight: 400;
+}
+footer aside a:hover{
+    color: white;
+}
+footer p{
+    
+    color: white;
+    font-weight: 400;
+    font-size:100%;
+}
+
+
+
+@keyframes move{
+    from{
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0px);
+    }
+}
+
 
 

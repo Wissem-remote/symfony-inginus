@@ -1,0 +1,45 @@
+
+@media screen and (max-width: 390px){
+section:nth-child(1){
+    transition: 1s;
+    height: 35vh;
+}
+
+
+section:nth-child(1) h2{
+    transition: 1s;
+    padding-top: 15vh;
+    font-size: 2.1rem;
+}
+section:nth-child(2){
+    transition: 1s;
+    height: auto;
+    display: block;
+}
+section:nth-child(2) article:nth-child(1){
+    width:100%;
+    height: 35vh;
+    display: flex;
+    transition: 1s;
+}
+section:nth-child(2) article:nth-child(1)  p{
+    font-size: 2.2rem;
+}
+section:nth-child(2) article:nth-child(1)  a {
+    top:23vh;
+    padding: 5px 15px 5px 15px ;
+    font-size: .8rem;
+}
+section:nth-child(2) article:nth-child(2){
+    width:100%;
+    height: 35vh;
+    transition: 1s;
+}
+section:nth-child(2) article:nth-child(2) p {
+    font-size: 2.3rem;
+}
+section:nth-child(3) h2{
+    font-size: 1.3rem;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.26);
+}
+}

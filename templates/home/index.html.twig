@@ -1,7 +1,93 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Acceuil{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/home/style.css')}}">
+<link rel="stylesheet" href="{{asset('css/home/style_media_tablette.css')}}">
+<link rel="stylesheet" href="{{asset('css/home/style_media_mobile.css')}}">
+<link rel="stylesheet" href="{{asset('css/home/style_media_mobile_xs.css')}}">
+{% endblock %}
+
 
 {% block body %}
-<h2> accueil </h2>
+
+	<section  style=" background:  linear-gradient(359deg, #0000004d, transparent), url('{{ asset('img/remote_v4_1.jpg')}}')  no-repeat;
+	background-size: cover;">
+
+	
+		<h2>PRÉPAREZ-VOUS
+			<br>POUR L'AVENTURE</h2>
+	</section>
+
+	<section>
+
+		<article >
+
+			<p class="text-white">
+				Découvrez<br>
+				Nos Derniers<br>
+				Nouveautés
+			</p>
+			<a href="#">NOW</a>
+
+		</article>
+
+		<article style="background: linear-gradient(39deg, #2617175e, transparent),
+		url('{{ asset('img/Drone_C6_1.jpg')}}') no-repeat; background-size: cover;">
+
+
+
+            <p class="text-white">
+
+				Professional<br>
+				Drone<br>
+				Solutions<br>
+			</p>
+		</article>
+	</section>
+	
+	<section style="background:  url('{{ asset('/img/montagne.jpg')}}') fixed no-repeat; background-size: cover;">
+		<h2><span>Nos</span> Produits</h2>
+			
+			<article class="container">
+
+				<div class="row gx-5">
+					{% for article in articles %}
+					<div class="col-8 col-lg-3 col-md-4 col-sm-6 ">
+						<div class="card">
+							<img src="{{ asset('/uploads/article/' ~ article.image)}}" height="200" style="object-fit:cover;" class="card-img-top" alt="Drone">
+							<div class="card-body">
+
+									<div class="infos">
+										<p class="card-title">{{ article.nom }}</p>
+										<p class="card-text">Prix : {{ article.prix}} €</p>
+									</div>
+									<div class="infos">
+										<div class="btn-group">
+
+											<a href="#" class="btn btn-outline-dark  ">
+											<i class="bi bi-dash-lg "></i>
+											</a>
+											
+											<a href="#" class="btn btn-dark "></a>
+
+											<a href="#" class="btn btn-outline-dark ">
+												<i class="bi bi-plus-lg"></i>
+											</a>
+										</div>
+
+										<a href="#" class="btn btn-primary">
+											Voir
+										</a>
+									</div>
+							
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			</article>
+    </section>
+
+
 {% endblock %}

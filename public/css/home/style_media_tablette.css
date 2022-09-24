@@ -1,0 +1,38 @@
+
+@media screen and (max-width: 840px){
+section:nth-child(1){
+    transition: 1s;
+    height: 35vh;
+}
+
+
+section:nth-child(1) h2{
+    transition: 1s;
+    padding-top:8vh;
+    font-size: 7vw;
+}
+section:nth-child(2){
+    transition: 1s;
+    height: 35vh;;
+}
+section:nth-child(2) article:nth-child(1){
+    width:100%;
+    height: 40vh;
+}
+section:nth-child(2) article:nth-child(1)  a {
+    top:18vw;
+    font-size: 1.3vw;
+}
+section:nth-child(2) article:nth-child(2){
+    width:100%;
+    height: 40vh;
+    background-size: cover;
+}
+section:nth-child(3) h2{
+    font-size: 1.9rem;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.26);
+}
+.card-body .infos{
+    font-size: 1.9vw;
+}
+}

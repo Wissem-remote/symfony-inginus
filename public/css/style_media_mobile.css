@@ -1,10 +1,10 @@
 
 @media screen and (max-width: 700px){
-    h1{
-        font-size:4vh;
+    .ing{
+        display: none;
     }
     .title{
-    width:40vw;
+    width:17%;
     }
     .img{
         width: 16vw;
@@ -26,7 +26,7 @@
         cursor: pointer;
         right: 5%;
         top:50%;
-        width: 10vw;
+        width: 10%;
         transform: translate(-5%, -50%);
         z-index: 2;
     }
@@ -76,6 +76,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20vh;
+        width: 65%;
     }
 }

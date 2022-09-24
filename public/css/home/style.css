@@ -1,0 +1,107 @@
+section:nth-child(1){
+    background-size: cover;
+    height: 73vh;
+    transition: 1s;
+}
+
+
+section:nth-child(1) h2{
+    transition: 1s;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.26);
+    padding-top:37vh;
+    padding-right: 2vw;
+    color: white;
+    text-align:end;
+    font-size: 7.2vw;
+    font-weight: 400;
+    animation: linear move 2s;
+}
+section:nth-child(2){
+    height: 55vh;
+    background: #ddd;
+    display: flex;
+    transition: 1s;
+}
+section:nth-child(2) article:nth-child(1){
+    width:50vw;
+    display: flex;
+}
+section:nth-child(2) article:nth-child(1){
+    background: #1B57A6;
+    background-image:linear-gradient(360deg, #ffffff38, transparent);
+}
+
+section:nth-child(2) article:nth-child(1)  p{
+    padding-left: 1vw;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.26);
+    text-align:start;
+    font-size: 5.2vw;
+    font-weight: 400;
+    animation: linear move 2s;
+}
+section:nth-child(2) article:nth-child(1)  a {
+    position: relative;
+    top: 19vw;
+    font-size: 1.2vw;
+    font-weight:500;
+    color:white;
+    height: 6vh;
+    border: solid 2px white;
+    padding: 5px 15px 5px 15px ;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    animation: linear move 2s;
+}
+section:nth-child(2) article:nth-child(1)  a:hover{
+    color:#1B57A6;
+    background: white;
+}
+section:nth-child(2) article:nth-child(2){
+    background-size: cover;
+    width:50vw;
+}
+section:nth-child(2) article:nth-child(2) p {
+    padding-left: 1vw;
+    text-align:start;
+    font-size: 5.2vw;
+    font-weight: 500;
+    animation: linear move 2s;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.26);
+}
+
+section:nth-child(3){
+    min-height: 110vh;
+}
+
+section:nth-child(3) h2{
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.26);
+    text-align: center;
+    font-weight: 500;
+    font-size: 4.9vw;
+    color: white;
+    padding: 1em;
+    animation: linear move 2s;
+}
+section:nth-child(3) h2 span{
+    color:#1B57A6 ;
+}
+
+.card{
+    border:none;
+    background: linear-gradient(297deg, #ffffff57, #ffffff94);
+    
+}
+
+.card-body .infos{
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.322);
+    display: flex;
+    justify-content:space-around;
+    padding: 2%;
+    font-weight: 500;
+    font-size: 1.5vw;
+}
+
+.btn-group{
+    text-shadow: none;
+}
