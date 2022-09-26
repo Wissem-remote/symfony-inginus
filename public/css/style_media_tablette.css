@@ -4,7 +4,7 @@
         font-size:4vh;
     }
     .title{
-        width:40vw;
+        width:42vw;
     }
     .img{
         width: 10vw;
@@ -76,7 +76,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 30vh;
+        width: 14vw;
     }
 
     /* footer */

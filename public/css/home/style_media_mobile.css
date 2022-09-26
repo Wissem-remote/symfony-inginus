@@ -8,8 +8,8 @@ section:nth-child(1){
 
 section:nth-child(1) h2{
     transition: 1s;
-    padding-top: 15vh;
-    font-size: 2.8rem;
+    padding-top: 25vh;
+    font-size: 5vh;
 }
 section:nth-child(2){
     transition: 1s;
@@ -23,12 +23,12 @@ section:nth-child(2) article:nth-child(1){
     transition: 1s;
 }
 section:nth-child(2) article:nth-child(1)  p{
-    font-size: 2.7rem;
+    font-size: 6.4vh;
 }
 section:nth-child(2) article:nth-child(1)  a {
-    top:29vh;
-    padding: 4px 15px 4px 15px ;
-    font-size: .9rem;
+    top:31vh;
+    padding: 7px 15px 5px 15px ;
+    font-size: 2.5vh;
 }
 section:nth-child(2) article:nth-child(2){
     width:100%;
@@ -36,11 +36,11 @@ section:nth-child(2) article:nth-child(2){
     transition: 1s;
 }
 section:nth-child(3) h2{
-    font-size: 1.6rem;
+    font-size: 5vh;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.26);
 }
 section:nth-child(2) article:nth-child(2) p {
-    font-size:2.7rem;
+    font-size:8vh;
     
 }
 

@@ -8,28 +8,36 @@ section:nth-child(1){
 
 section:nth-child(1) h2{
     transition: 1s;
-    padding-top:8vh;
-    font-size: 7vw;
+    padding-top:21vh;
+    font-size: 8vw;
 }
 section:nth-child(2){
     transition: 1s;
-    height: 35vh;;
+    height: 25vh;;
 }
 section:nth-child(2) article:nth-child(1){
     width:100%;
-    height: 40vh;
+    height: 25vh;
+}
+section:nth-child(2) article:nth-child(2) p {
+    font-size: 4.9vh;
+}
+section:nth-child(2) article:nth-child(1) p {
+    font-size: 4.4vh;
+    padding-top: 1vh;
 }
 section:nth-child(2) article:nth-child(1)  a {
-    top:18vw;
-    font-size: 1.3vw;
+    top:15vh;
+    font-size: 2vh;
+    padding: 14px 15px 5px 15px ;
 }
 section:nth-child(2) article:nth-child(2){
     width:100%;
-    height: 40vh;
+    height: 25vh;
     background-size: cover;
 }
 section:nth-child(3) h2{
-    font-size: 1.9rem;
+    font-size: 5vh;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.26);
 }
 .card-body .infos{
