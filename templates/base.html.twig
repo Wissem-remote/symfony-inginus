@@ -23,7 +23,7 @@
         
     </head>
     <body>
-    {# {{ dump(app.session.get('panier'))}} #}
+    
         <header class="">
         <div class="title">
             <img class="img" src="{{ asset('img/Logo-drone.png')}}" alt="logo"/>
@@ -33,15 +33,26 @@
 
         <div class="bot">
             
-            <a href="{{path('app_login')}}">
+            <a class="login" href="#">
                 <i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
             </a>
-            <a href="#">
-                <i class='bx-md bx bx-cart' style='color:#2273BC; '></i>
-                
+            <div class="list-group drop">
+                <a href="#" class="list-group-item list-group-item-action">Connnect Vous !</a>
+                <a href="#" class="list-group-item list-group-item-action ">Inscritption</a>
+            </div>
+
+            <a href="{{ path('cart')}}">
+                {% if app.session.get('panier')|length >= 1 %}
+                    <i class='bx bxs-cart-download' style='color:#42858C'></i>
+                {% else %}
+                    <i class='bx-md bx bx-cart' style='color:#2273BC; '></i>
+                {% endif %}
             </a>
 
+
+
         </div>
+
         <div class="hamburger">
             <div class="line"></div>
             <div class="line"></div>
@@ -58,12 +69,23 @@
             <a class=" {%if nav is defined and nav == 'contact'%}active {% endif%}" href="{{ path('contact') }}">CONTACT</a>
 
             <div class="icon">
-                <a href="#">
+                <a class="login" href="#">
                     <i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
                 </a>
-                <a href="{{ path('cart')}}">
-                    <i class='bx-md bx bx-cart' style='color:#2273BC; '></i>
+                <div class="list-group drop">
+                    <a href="#" class="list-group-item list-group-item-action">Connnect Vous !</a>
+                    <a href="#" class="list-group-item list-group-item-action ">Inscritption</a>
+                </div>
+
+                <a  href="{{ path('cart')}}">
+                    {% if app.session.get('panier')|length >= 1 %}
+                        <i class='bx bxs-cart-download' style='color:#42858C'></i>
+                    {% else %}
+                        <i class='bx-md bx bx-cart' style='color:#2273BC; '></i>
+                    {% endif %}
                 </a>
+
+                
             </div>
         </nav>
         </header>
@@ -89,6 +111,7 @@
             {# Lien JS #}
         {% endblock %}
         <script src="{{ asset('js/app.js')}}"></script>
+        <script src="{{ asset('js/app_nav.js')}}"></script>
         
     </body>
 </html>

@@ -20,15 +20,24 @@ class CartController extends AbstractController
         // j'ajoute mon tableaux panier
         $panier = $session->get('panier', []);
 
+
         $total = 0;
+
+        $qte = 0;
 
         if(!empty($panier)){
             foreach ($panier as  $value) {
                 $total += $value['article']->getPrix() * $value['qte'];
+                $qte += $value['qte'];
             }
         }
+
+        $session->set('total', [$total]);
+        
+        $session->set('qte',[$qte]);
+
         return $this->render('cart/index.html.twig', [
-            'total' => $total
+            'qte' => $qte
         ]);
     }
 
@@ -44,11 +53,14 @@ class CartController extends AbstractController
         // j'ajoute mon tableaux panier
         $panier = $session->get('panier', []);
 
+        
+
         // je verifie si article n'exite pas s'il existe je l'incrémente
         if(empty($panier[$article->getId()])){
             $panier[$article->getId()] = [
                 'article' => $article,
-                'qte' => 1
+                'qte' => 1,
+                
             ];
             
         }else{
@@ -56,11 +68,16 @@ class CartController extends AbstractController
                 'article' => $article,
                 'qte' => ++$panier[$article->getId()]['qte']
             ];
+            
         }
 
         $session->set('panier',$panier);
 
-        return $this->redirectToRoute($origin);
+        if ($origin == "article"){
+            return $this->redirectToRoute($origin,['id' => $article->getId()]);
+        }else{
+            return $this->redirectToRoute($origin);
+        }
         
     }
 
@@ -69,7 +86,6 @@ class CartController extends AbstractController
     {
         // j'initialise ma session
         $session = $request->getSession();
-
 
         // j'ajoute mon tableaux panier
         $panier = $session->get('panier', []);
@@ -85,6 +101,7 @@ class CartController extends AbstractController
         }
 
         $session->set('panier', $panier);
+        
         return $this->redirectToRoute($origin);
     }
 }

@@ -40,11 +40,13 @@
         -webkit-clip-path: circle(100px at 90% -20%);
         transition: all 2s ease-out;
         pointer-events: none;
+        z-index: 1;
     }
     .links.open{
         clip-path: circle(2000px at 90% -20%);
         -webkit-clip-path: circle(2000px at 90% -20%);
         pointer-events: all;
+        
     }
     .links a {
     opacity: 0;
@@ -71,6 +73,9 @@
     .bx-md {
     font-size: 350%!important;
     }
+    .bx{
+        font-size: 350%!important;
+    }
     .bot{
         transition: all 0.5s ease 0.2s;
         display: flex;
@@ -78,7 +83,11 @@
         justify-content: center;
         width: 14vw;
     }
-
+    .drop{
+        width: 100%;
+        right: 0%;
+        height: 35vh;
+    }
     /* footer */
 
 
