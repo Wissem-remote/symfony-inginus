@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="{{asset('css/home/style_media_tablette.css')}}">
 <link rel="stylesheet" href="{{asset('css/home/style_media_mobile.css')}}">
 <link rel="stylesheet" href="{{asset('css/home/style_media_mobile_xs.css')}}">
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+
 {% endblock %}
 
 
@@ -51,9 +54,21 @@
 			
 			<article class="container">
 
-				<div class="row gx-5">
+		<div class="row gx-5 w-100 m-auto main-carousel" data-flickity='{ "contain": true, "freeScroll": true,"autoPlay": true}'>
+
+
+
+
+
+
+
+
+
+
+
 					{% for article in articles %}
-					<div class="col-8 col-lg-3 col-md-4 col-sm-6 ">
+				<div class="col-12 me-4 col-lg-3 col-md-4 col-sm-6 carousel-cell">
+
 						<div class="card">
 							<img src="{{ asset('/uploads/article/' ~ article.image)}}" height="200" style="object-fit:cover;" class="card-img-top" alt="Drone">
 							<div class="card-body">
@@ -63,20 +78,13 @@
 										<p class="card-text">Prix : {{ article.prix}} €</p>
 									</div>
 									<div class="infos">
-										<div class="btn-group">
+										
 
-											<a href="#" class="btn btn-outline-dark  ">
-											<i class="bi bi-dash-lg "></i>
+										<a href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;" class="btn btn-success ">
+											Ajouter
 											</a>
-											
-											<a href="#" class="btn btn-dark "></a>
 
-											<a href="#" class="btn btn-outline-dark ">
-												<i class="bi bi-plus-lg"></i>
-											</a>
-										</div>
-
-										<a href="#" class="btn btn-primary">
+										<a href="{{ path('article',{id : article.id})}}" class="btn btn-primary" style=" text-shadow:none;">
 											Voir
 										</a>
 									</div>
@@ -86,8 +94,18 @@
 					</div>
 				{% endfor %}
 				</div>
+			
+
+
 			</article>
     </section>
+
+
+{% endblock %}
+{% block javascripts %}
+
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
 
 
 {% endblock %}

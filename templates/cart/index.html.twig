@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+    <section class="container mt-4 mb-4">
+        <h2> Bienvenue dans votre panier !</h2>
+{% if app.session.get('panier') is not empty%}
+
+            <aside class="row">
+                <div class="col-8">
+                    <table class="table ">
+
+                        <thead class="table-info">
+
+                            <tr>
+                                <th scope="col">N°</th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Qté</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col" class=" text-center">Action</th>
+                            </tr>
+                        </thead>
+                                    <tbody>
+                                        {% for panier in app.session.get('panier')%}
+
+                                        <tr>
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>{{ panier.article.nom}}</td>
+                                            <td>{{ panier.qte}}</td>
+                                            <td>{{ panier.qte * panier.article.prix}} €</td>
+                                            <td class="text-center">
+
+                                                <div class="btn-group btn-sm">
+
+                                                    <a href="{{ path('cart_remove',{ id : panier.article.id, 'origin':app.request.attributes.get('_route')} ) }}" class="btn btn-outline-success  ">
+                                                        <i class="bi bi-dash "></i>
+                                                    </a>
+
+                                                    <a href="#" class="btn btn-success "></a>
+
+                                                    <a href="{{ path('cart_add',{ id : panier.article.id, 'origin':app.request.attributes.get('_route')} )}}" class="btn btn-outline-success ">
+
+                                                        <i class="bi bi-plus"></i>
+                                                    </a>
+                                                </div>
+
+
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                            </table>
+
+                </div>
+
+                <div class="col-4">
+                    <div class="list-group">
+                    <li class="list-group-item list-group-item-info border-0 text-center fw-light fs-5"> Sommaire de Votre Commande</li>
+                    <li class="list-group-item text-center p-5 fs-4">Total net : {{ total}} €</li>
+                    <li class="list-group-item d-flex justify-content-center">
+                    <a href="#" class="btn btn-lg btn-primary w-75 "> Payer </a>
+                    </li>
+                    </div>
+                </div>
+            <aside>
+
+            {% else %}
+            <aside>
+                    <h3> Votre Panier est vide ! </h3>
+            <aside>
+            {% endif %}
+    </section>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+
+{% block body %}
+<section class="container mt-5 mb-5">
+<h2 style="color:#1B57A6;  font-size: 3rem;" class="text-center m-4  ">INGINUS
+    <span style="color: #333">
+		-
+	</span>
+    <span style="color:#42858C;">STORE</span>
+</h2>
+
+
+    <aside class="row">
+
+        <article class="col-8 h-100 p-2 border border-1 d-flex justify-content-center ">
+        <img  src="{{ asset('uploads/article/' ~ article.image)}}" width="80%" height="100%" alt="{{ article.nom}}" />
+        </article>
+
+        <article class="col-4 h-100 p-3 border border-1  d-flex flex-column ">
+        <h3 class="text-center p-2">Titre : {{ article.nom}} </h3>
+        
+        <p class="text-center p-2">Description : {{ article.content}}</p>
+
+        <p class="text-center p-2 fs-3">Prix : {{ article.prix}} €</p>
+        
+        <p class="text-center p-2 fs-3 text-success">En Stock</p>
+
+       
+
+        <a href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;" class=" m-auto btn btn-success w-75  ">
+            Ajouter
+        </a>
+
+
+        </article>
+    </aside>
+</section>
+{% endblock %}
+
+
+{% block javascripts %}
+{% endblock %}

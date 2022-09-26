@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,8 @@ class HomeController extends AbstractController
     public function index(ArticleRepository $article): Response
     {
         $articles = array_reverse($article->findAll());
+        
+        
         return $this->render('home/index.html.twig', [
             'articles' => $articles
         ]);
@@ -39,6 +42,15 @@ class HomeController extends AbstractController
     {
         return $this->render('home/contact.html.twig', [
             'nav' => 'contact'
+        ]);
+    }
+
+    #[Route('/article/{id}', name: 'article')]
+    public function article(Article $article): Response
+    {
+
+        return $this->render('home/article.html.twig', [
+            'article' => $article
         ]);
     }
 }
