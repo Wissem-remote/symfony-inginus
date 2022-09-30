@@ -30,7 +30,7 @@ class RegistrationController extends AbstractController
                 )
             );
             
-            $user->setRoles(['ROLE_ADMIN']);
+            //$user->setRoles(['ROLE_ADMIN']);
             $user->setCreatedAt(new \DateTimeImmutable);
             $entityManager->persist($user);
             $entityManager->flush();

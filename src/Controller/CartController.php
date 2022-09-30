@@ -36,6 +36,8 @@ class CartController extends AbstractController
         
         $session->set('qte',[$qte]);
 
+        dump($this->getUser());
+
         return $this->render('cart/index.html.twig', [
             'qte' => $qte
         ]);

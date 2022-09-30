@@ -20,7 +20,7 @@ h1{
 
 h1 span{
     color:#9BDAF2;
-    
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.26);
 }
 /* header */
 
@@ -96,6 +96,7 @@ font-size: 220%!important;
     display: block;
     opacity: 1;
 }
+
 /* footer */
 
 

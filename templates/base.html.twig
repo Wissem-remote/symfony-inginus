@@ -25,11 +25,11 @@
     <body>
     
         <header class="">
-        <div class="title">
+        <a href="{{ path('home')}}" class="title text-decoration-none">
             <img class="img" src="{{ asset('img/Logo-drone.png')}}" alt="logo"/>
             <h1 class="ing">ING<span>INUS</span>
             </h1>
-        </div>
+        </a>
 
         <div class="bot">
             
@@ -37,8 +37,9 @@
                 <i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
             </a>
             <div class="list-group drop">
-                <a href="#" class="list-group-item list-group-item-action">Connnect Vous !</a>
-                <a href="#" class="list-group-item list-group-item-action ">Inscritption</a>
+                <a href="{{ path('app_login') }}" class="list-group-item list-group-item-action">Connnect Vous !</a>
+                <a href="{{ path('app_register')}}" class="list-group-item list-group-item-action ">Inscritption</a>
+
             </div>
 
             <a href="{{ path('cart')}}">
@@ -72,9 +73,10 @@
                 <a class="login" href="#">
                     <i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
                 </a>
-                <div class="list-group drop">
-                    <a href="#" class="list-group-item list-group-item-action">Connnect Vous !</a>
-                    <a href="#" class="list-group-item list-group-item-action ">Inscritption</a>
+                <div class="list-group drop z" style=" z-index: 1;">
+                    <a href="{{ path('app_login') }}" class="list-group-item list-group-item-action">Connnect Vous !</a>
+                    <a href="{{ path('app_register')}}" class="list-group-item list-group-item-action ">Inscritption</a>
+
                 </div>
 
                 <a  href="{{ path('cart')}}">

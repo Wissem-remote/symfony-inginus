@@ -15,11 +15,26 @@ class PayController extends AbstractController
     #[Route('/cart/pay', name: 'pay')]
     public function pay($stripeSk, Request $request): Response
     {
+        $cube = function ($paniers){
+            $result=[];
+                foreach($paniers as $panier){
+                    array_push($result,[
+                    'quantity' => $panier['qte'],
+                    'price_data' => [
+                        'currency' => 'EUR',
+                        'product_data' => [
+                            'name' => $panier['article']->getNom(),
+                        ],
+                        'unit_amount' => $panier['article']->getPrix().'00'
+                    ]]);
+                }
+                return $result;
+        };
         // j'initialise ma session
         $session = $request->getSession();
 
         // je recupere mon tableaux panier
-        $panier = $session->get('panier', []);
+        $paniers = $session->get('panier', []);
 
         // je recupere mon total des article
         $total = $session->get('total', []);
@@ -31,27 +46,29 @@ class PayController extends AbstractController
         Stripe::setApiKey($stripeSk);
 
         $session = Session::create([
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'eur',
-                    'product_data' => [
-                        'name' => 'T-shirt',
-                    ],
-                    'unit_amount' => 2000,
-                ],
-                'quantity' => 1,
-            ]],
+            'line_items' => [
+                $cube($paniers)
+            ],
             'mode' => 'payment',
+            'customer_email' => $this->getUser()->getEmail(),
             'success_url' => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url' =>  $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'billing_address_collection' => 'required',
+            'shipping_address_collection' => [
+                'allowed_countries' => ['FR']
+            ]
         ]);
 
         return $this->redirect($session->url, 303);
     }
 
     #[Route('cart/pay/success', name: 'success_url')]
-    public function paySuccess(): Response
+    public function paySuccess(Request $request): Response
     {
+        // j'initialise ma session
+        $session = $request->getSession();
+
+        $session->remove('panier','total','qte');
 
         return $this->render('pay/index.html.twig',[
         ]);
