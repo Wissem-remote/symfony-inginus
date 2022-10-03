@@ -1,0 +1,50 @@
+{% extends 'baseProfile.html.twig' %}
+
+{% block title %}Commandes
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h2 class="text-end fs-1 mb-4 me-4">
+			<i class="bi bi-cart"></i>
+			Mes Commandes
+		</h2>
+	</br>
+    </br>
+    </br>
+            <table class="table text-center fs-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Réference</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Etat</th>
+                        <th scope="col">Prix Total</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <hr class="border border-secondary border-1 mt-3 opacity-75">
+
+                        {% for order in orders %}
+
+                            <tr>
+                                <td>{{ order.reference }}</td>
+                                <td>{{ order.quantity }}</td>
+                                <td>{{ order.stateSending|upper }}</td>
+                                <td>{{ order.total|number_format(2,',',' ')  }} €</td>
+                                <td>{{ order.createdateAt|date('d/m/Y')}}</td>
+                                <td >
+                                <a href="{{ path('profile_order_detail',{id : order.id})}}" class="btn  btn-outline-info">Check</a>
+                                    <a href="#" class="btn btn-outline-primary">Message
+                                        <i class="bi bi-send-plus"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+</section>
+{% endblock %}
+

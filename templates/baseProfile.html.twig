@@ -50,6 +50,10 @@
 							<a href="{{ path('home')}}" class="nav-link text-white me-2 fs-5">
 								Acceuil
 							</a>
+							
+							<a href="{{ path('cart')}}" class="nav-link fs-5  text-white btn btn-primary me-3 ">
+								<i class="bi bi-cart"></i>
+							</a>
 
 							<a href="{{ path('logout')}}" class="nav-link fs-5  text-white btn btn-danger ">
 								Logout
@@ -78,7 +82,7 @@
                     <a href="#" class="mb-4 fs-4 text-decoration-none text-white">
                     <i class="bi bi-person-circle"></i> Profile
                     </a>
-                    <a href="#" class="mb-4 fs-4 text-decoration-none text-white">
+					<a href="{{ path('profile_order')}}" class="mb-4 fs-4 text-decoration-none text-white">
                     <i class="bi bi-cart"></i> Mes Commandes
                     </a>
                     <a href="#" class="mb-4 fs-4 text-decoration-none text-white">
@@ -91,8 +95,6 @@
         </div>
 
 		<main class="container mt-5 mb-5 "> 
-
-
         {% block body %}
         {% endblock %}
 		</main>

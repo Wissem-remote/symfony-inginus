@@ -23,23 +23,22 @@ class CartController extends AbstractController
 
         $total = 0;
 
-        $qte = 0;
+        
 
         if(!empty($panier)){
             foreach ($panier as  $value) {
                 $total += $value['article']->getPrix() * $value['qte'];
-                $qte += $value['qte'];
             }
         }
 
         $session->set('total', [$total]);
         
-        $session->set('qte',[$qte]);
+        
 
-        dump($this->getUser());
+        //dump($this->getUser());
 
         return $this->render('cart/index.html.twig', [
-            'qte' => $qte
+            
         ]);
     }
 

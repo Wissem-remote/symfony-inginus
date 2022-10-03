@@ -1,10 +1,130 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr">
 
-{% block title %}Paiement Valide{% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block body %}
-        <div class="container">
-            <h2>Votre Paiement est validez</h2>
-            <p>Vérfier votre adress Email ! </p>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+		<link
+		rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		<link rel="stylesheet" href="{{asset('css/style.css')}}">
+		<link rel="stylesheet" href="{{asset('css/style_media_tablette.css')}}">
+		<link rel="stylesheet" href="{{asset('css/style_media_mobile.css')}}">
+		<link rel="stylesheet" href="{{asset('css/style_media_mobile_xs.css')}}">
+		{% block stylesheets %}
+			{# Lien CSS #}
+		{% endblock %}
+
+
+	</head>
+	<body>
+
+		<header class="">
+			<a href="{{ path('home')}}" class="title text-decoration-none">
+				<img class="img" src="{{ asset('img/Logo-drone.png')}}" alt="logo"/>
+				<h1 class="ing">ING<span>INUS</span>
+				</h1>
+			</a>
+            <div class="ms-auto p-3">
+            <a href="{{ path('back_url')}}" class="btn  btn-primary">
+                Retouner
+            </a>
+            </div>
+			</nav>
+		</header>
+		<main>
+
+        <div class="container mt-4 mb-4">
+            <h2>Félicitation votre commande à été passé</h2>
+            </br>
+            <p> <span class="fw-semibold">Reference :</span> {{ reference }} </p>
+            <p> <span class="fw-semibold">Email :</span> {{ emailLivraisson }} </p>
+            
+                <div class="row d-flex justify-content-lg-between ">
+                    {# Adress de livraisson #}
+                    <div class="col-3">
+                    <p class="fw-bold">Votre Adresses de Livraison </p>
+                    <p><span class="fw-semibold">Adresse :</span> {{ adressLivraison['line1'] }} </p>
+                    {% if adressLivraison['line2']%}<p><span class="fw-semibold"> Complément : </span> {{ adressLivraison['line2']}}</p>{% endif %}
+                    <p><span class="fw-semibold">Ville :</span> {{adressLivraison['city']}} </p>
+                    <p><span class="fw-semibold">Code Postal :</span>{{ adressLivraison['postal_code']}}</p>
+
+                    </div>
+                    {# Adress de Facturation #}
+                    <div class="col-3">
+                    <p class="fw-bold">Votre Adresses de Facturation </p>
+                    <p><span class="fw-semibold">Adresse :</span> {{ adressDetail['line1'] }} </p>
+                    {% if adressDetail['line2']%}<p><span class="fw-semibold"> Complément : </span> {{ adressDetail['line2']}}</p>{% endif %}
+                    <p><span class="fw-semibold">Ville :</span> {{adressDetail['city']}} </p>
+                    <p><span class="fw-semibold">Code Postal : </span>{{ adressDetail['postal_code']}}</p>
+                    </div>
+
+                </div>
+                    </br>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table ">
+
+                            <thead class="table-info">
+                                <tr>
+                                    <th scope="col">N°</th>
+                                    <th scope="col">NomArticle</th>
+                                    <th scope="col">Qté</th>
+                                    <th scope="col">Prix</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for panier in app.session.get('panier')%}
+
+                                    <tr>
+                                        <th scope="row">{{ loop.index }}</th>
+                                        <td>{{ panier.article.nom}}</td>
+                                        <td>{{ panier.qte}}</td>
+                                        <td>{{ (panier.qte * panier.article.prix)|number_format(2,',',' ')}} €</td>
+                                    
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                                <tfoot >
+                                    <th colspan="2"></th>
+                                    <th class="text-end p-3">Total : </th>
+                                    <th>{{ total[0]|number_format(2,',',' ') }} €</th>
+                                </tfoot>
+
+                        </table>
+
+                    </div>
+                </div>
+            
         </div>
-{% endblock %}
+        
+</main>
+<footer>
+	<aside>
+		<a href="#">MENTIONS LÉGALES</a>
+		<a href="#">POLITIQUE EN MATIÈRE DE COOKIES</a>
+		<a href="#">POLITIQUE DE CONFIDENTIALITÉ</a>
+		<a href="#">CONDITIONS D'UTILISATION</a>
+	</aside>
+
+	<p class="text-center">© 2023 par INGINIUS. Créé par REZKI WISSEM</p>
+</footer>
+
+
+<script src="{{ asset('js/app.js')}}"></script>
+<script src="{{ asset('js/app_nav.js')}}"></script></body></html>
+
+
+</body>
+</html>
+

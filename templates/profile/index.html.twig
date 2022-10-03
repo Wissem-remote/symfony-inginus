@@ -3,5 +3,39 @@
 {% block title %}Bienvenue !{% endblock %}
 
 {% block body %}
-<h2> </h2>
+<section>
+		<h2 class="text-end fs-1 mb-4 me-4">
+			<i class="bi bi-speedometer2"></i>
+			DashBoard
+		</h2>
+		</br>
+		</br>
+		</br>
+		<aside class="text-center">
+			<div class="d-flex justify-content-md-between w-75 p-2">
+				<p class="fs-4 col-3 fw-bold"> N° Réference </p>
+				<p class="fs-4 col-3 fw-bold">Quantité</p>
+				<p class="fs-4 col-3 fw-bold">Etat</p>
+				<p class="fs-4 col-3 fw-bold">Total Prix</p>
+				<p class=" fs-4 col-3 fw-bold">Date</p>
+
+			</div>
+			<hr class="border border-secondary border-1 mt-3 opacity-75">
+
+				{% for order in orders %}
+					<div class="  w-75  d-flex justify-content-md-between p-3">
+
+
+						<span class="col-3 fw-semibold">{{ order.reference }}</span>
+						<span class="col-3 fw-semibold">{{ order.quantity }}</span>
+						<span class="col-3 fw-semibold">{{ order.stateSending|upper}}</span>
+						<span class="col-3 fw-semibold">{{ order.total|number_format(2,',',' ')}} €</span>
+						<span class="col-3 fw-semibold ps-4">{{ order.createdateAt|date('d/m/Y') }}</span>
+
+
+					</div>
+				<hr class="border border-secondary border-1 mt-3 opacity-75">
+				{% endfor %}
+		</aside>
+</section>
 {% endblock %}

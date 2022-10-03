@@ -1,0 +1,88 @@
+{% extends 'baseProfile.html.twig' %}
+
+{% block title %}Vos Commandes{% endblock %}
+
+{% block body %}
+<div class="container mt-4 mb-4">
+	<h2>Votre Commande</h2>
+</br>
+
+
+<div class="row d-flex justify-content-lg-between ">
+	{# Adress de livraisson #}
+	<div class="col-3">
+		<p class="fw-bold">Votre Adresses de Livraison
+		</p>
+		<p>
+			<span class="fw-semibold">Adresse :</span>
+			{{ order.adressLivraison[0]['line1'] }}
+		</p>
+		{% if order.adressLivraison[0]['line2']%}
+			<p>
+				<span class="fw-semibold">
+					Complément :
+				</span>
+				{{ order.adressLivraison[0]['line2']}}</p>
+		{% endif %}
+		<p>
+			<span class="fw-semibold">Ville :</span>
+			{{order.adressLivraison[0]['city']}}
+		</p>
+		<p>
+			<span class="fw-semibold">Code Postal :</span>
+			{{ order.adressLivraison[0]['postal_code']}}</p>
+	</div>
+	<div class="col-3">
+<p>
+	<span class="fw-semibold">Reference :</span>
+	{{ order.reference }}
+</p>
+<p>
+	<span class="fw-semibold">Email :</span>
+	{{ order.email }}
+</p>
+
+	</div>
+
+</div>
+</br>
+<div class="row">
+<div class="col-12">
+	<table class="table ">
+
+		<thead class="table-info">
+			<tr>
+				<th scope="col">N°</th>
+				<th scope="col">NomArticle</th>
+				<th scope="col">Qté</th>
+				<th scope="col">Prix</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for panier in order.panier %}
+
+				<tr>
+					<th scope="row">{{ loop.index }}</th>
+					<td>{{ panier.article.nom}}</td>
+					<td>{{ panier.qte}}</td>
+					<td>{{ (panier.qte * panier.article.prix)|number_format(2,',',' ')}} €</td>
+
+				</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<th colspan="2"></th>
+			<th class="text-end p-3">Total :
+			</th>
+			<th>{{ order.total|number_format(2,',',' ') }} €</th>
+		</tfoot>
+
+	</table>
+
+</div>
+</div>
+</div> 
+
+{% endblock %}
+
