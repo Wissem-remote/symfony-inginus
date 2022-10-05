@@ -37,7 +37,7 @@
                                 <td>{{ order.createdateAt|date('d/m/Y')}}</td>
                                 <td >
                                 <a href="{{ path('profile_order_detail',{id : order.id})}}" class="btn  btn-outline-info">Check</a>
-                                    <a href="#" class="btn btn-outline-primary">Message
+                                <a href="{{ path('profile_order_message',{id : order.id})}}" class="btn btn-outline-primary">Message
                                         <i class="bi bi-send-plus"></i>
                                     </a>
                                 </td>
