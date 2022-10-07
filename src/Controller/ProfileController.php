@@ -52,11 +52,15 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // je recupere le contenue de mon formulaire ['objet'] et ['message']
             $data = $form->getData();
-
+            
+            // on ajoute nos information dans notre objet
             $message->setCreatedAt(new \DateTimeImmutable);
             $message->setUser($this->getUser());
             $message->setOrders($order);
             $message->setState(false);
+            $message->setObjet($data['objet']);
+            $message->setContent([$data['message']]);
+            //dump($data);
             
             $em->persist($message);
             $em->flush();
@@ -70,6 +74,16 @@ class ProfileController extends AbstractController
         return $this->render('profile/order_message.html.twig', [
             'order' => $order,
             'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/profile/message', name: 'profile_message')]
+    public function message(ManagerRegistry $doctrine): Response
+    {
+        $messages = $doctrine->getRepository(Message::class)->findBy(['user' => $this->getUser()]);
+
+        return $this->render('profile/message.html.twig', [
+            'messages' => array_reverse($messages),
         ]);
     }
 }

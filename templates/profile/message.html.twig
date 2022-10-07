@@ -1,0 +1,39 @@
+{% extends 'baseProfile.html.twig' %}
+
+{% block title %}Commandes
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h2 class="text-end fs-1 mb-4 me-4">
+			<i class="bi bi-chat"></i>
+			Mes Messages
+		</h2>
+	</br>
+</br></br>
+
+    <table class="table text-center fs-5">
+        <thead>
+        <th scope="col">Objet</th>
+        <th scope="col">Date</th>
+        <th scope="col">Reférence de la Comande</th>
+        <th scope="col">Action</th>
+        </thead>
+        <tbody>
+
+            <hr class="border border-secondary border-1 mt-3 opacity-75">
+
+            {% for message in messages %}
+
+                <tr>
+                    <td>{{ message.objet }}</td>
+                    <td>{{ message.createdAt|date('d/m/Y à m:h') }}</td>
+                    <td>{{ message.orders.reference }}</td>
+                    <td> <a href="#" class="btn  col-4 btn-sm btn-outline-primary"> Voir </button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</section>{% endblock %}
+

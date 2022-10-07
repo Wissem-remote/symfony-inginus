@@ -16,11 +16,11 @@ class MessageType extends AbstractType
         $builder
             ->add('objet', ChoiceType::class, [
             'choices'  => [
-                'Ou en est la livraisson ?' => 'Livraison',
-                'Demande de Reboursement' => 'reboursement',
-                'Produit non conforme' => 'hs',
-                'Produit ne fonctionne pas !' => 'etat',
-                'Autre Demande' => 'Autre'
+                'Ou en est la livraisson ?' => 'Ou en est la livraisson ?',
+                'Demande de Reboursement' => 'Demande de Reboursement',
+                'Produit non conforme' => 'Produit non conforme',
+                'Produit ne fonctionne pas !' => 'Produit ne fonctionne pas !',
+                'Autre Demande' => 'Autre Demande'
             ],
         ])
             ->add('message', TextareaType::class)
@@ -33,8 +33,6 @@ class MessageType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => Message::class,
-        ]);
+        $resolver->setDefaults([]);
     }
 }

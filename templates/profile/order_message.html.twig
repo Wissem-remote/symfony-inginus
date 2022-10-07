@@ -4,13 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	<section>
+	<section class="w-75 m-auto">
         <h2> Envoyer un Message</h2>
         <p> Reference de la Commande : <span class="fw-semibold">{{ order.reference|upper }}</span></p>
         {{ form_start(form)}}
         {{ form_row(form.objet)}}
-        {{ form_row(form.message)}}
-        <button class="btn btn-primary" type="submint">Envoyer</button>
+        {{ form_row(form.message,{  'attr': {'rows': '7'}})}}
+
+        <button class="btn btn-primary mt-3 text-center col-3 " type="submint">Envoyer</button>
         {{ form_end(form)}}
     </section>
 {% endblock %}
