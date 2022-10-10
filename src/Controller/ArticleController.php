@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Message;
+use App\Entity\Order;
 use App\Form\ArticleType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,8 +22,12 @@ class ArticleController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $articles = $doctrine->getRepository(Article::class)->findby([ 'type' => 'Article']);
+        $notificationSend = $doctrine->getRepository(Message::class)->findby([ 'state' => false ]);
+        $notificationOrder = $doctrine->getRepository(Order::class)->findby(['state' => false]);
         return $this->render('admin/index.html.twig', [
-            'articles' => array_reverse($articles)
+            'articles' => array_reverse($articles),
+            'notificationSend' => $notificationSend,
+            'notificationOrder' => $notificationOrder
         ]);
     }
 
@@ -30,8 +36,12 @@ class ArticleController extends AbstractController
     public function tools(ManagerRegistry $doctrine): Response
     {
         $articles = $doctrine->getRepository(Article::class)->findby(['type' => 'Accessoire']);
+        $notificationSend = $doctrine->getRepository(Message::class)->findby(['state' => false]);
+        $notificationOrder = $doctrine->getRepository(Order::class)->findby(['state' => false]);
         return $this->render('admin/index.html.twig', [
-            'articles' => array_reverse($articles)
+            'articles' => array_reverse($articles),
+            'notificationSend' => $notificationSend,
+            'notificationOrder' => $notificationOrder
         ]);
     }
 

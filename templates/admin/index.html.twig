@@ -42,6 +42,15 @@
 <a href="{{path('admin_tools')}}" class="btn btn-primary m-2">
 	Accessoires
 </a>
+<a href="{{path('admin_order')}}" class="btn btn-primary m-2">
+	Commandes
+	<span class="badge text-bg-danger">{% if notificationOrder|length >= 1  %} {{ notificationOrder|length }}{% endif %}</span>
+
+</a>
+<a href="{{path('admin_messager')}}" class="btn btn-warning m-2">
+	Message
+<span class="badge text-bg-white">{% if notificationSend|length >= 1  %} {{ notificationSend|length }}{% endif %}</span>
+</a>
 
 
 <table class="table table-dark  table-striped">
@@ -81,6 +90,6 @@
 			</tr>
 		</tbody>
 	{% endfor %}
-</tbody></table>
+	</table>
 
 {% endblock %}

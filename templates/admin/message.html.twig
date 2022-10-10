@@ -1,0 +1,63 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Messager{% endblock %}
+
+{% block body %}
+<h1 class="p-2">
+	Vos Messages
+</h1>
+<a href="{{path('admin')}}" class="btn btn-primary m-2">
+	Articles
+</a>
+<a href="{{path('admin_tools')}}" class="btn btn-primary m-2">
+	Accessoires
+</a>
+<a href="{{path('admin_order')}}" class="btn btn-primary m-2">
+	Commandes
+	<span class="badge text-bg-danger">
+		{% if notificationOrder|length >= 1  %}
+			{{ notificationOrder|length }}
+		{% endif %}
+	</span>
+</a>
+<a href="{{path('admin_messager')}}" class="btn btn-warning m-2">
+	Message
+	<span class="badge text-bg-secondary">{% if notificationSend|length >= 1  %} {{ notificationSend|length }}{% endif %}</span>
+</a>
+<table class="table table-dark  table-striped">
+
+
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Nom Client</th>
+				<th scope="col">Ref Commande</th>
+				<th scope="col">Objet</th>
+				<th scope="col">Date création</th>
+				<th scope="col">Etat</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for messager in  messagers %}
+
+				<tr>
+					<th class="ls-lg" scope="row">{{ messager.id}}</th>
+					<td>{{ messager.user.name}}</td>
+					<td>{{ messager.orders.reference}}</td>
+					<td>{{ messager.objet}}</td>
+					<td>{{ messager.createdAt|date('d-m-Y')}}</td>
+					<td>{% if messager.state %} <p class="fw-semibold text-success"> Répondu </p> {% else %} <p class="fw-semibold text-primary"> En attente </p> {% endif %}</td>
+					<td><a href="{{ path('admin_messager_update',{id : messager.id})}}" class="btn btn-primary"> Voir </a></td>
+
+
+					{# Button CRUD #}
+
+				</tr>
+		</tbody>
+	{% endfor %}
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'baseProfile.html.twig' %}
+
+{% block title %}Messager
+{% endblock %}
+{% block body %}
+<div class=" m-auto w-75 ">
+	<p class="fw-semi-bold fs-4">
+		Objet :
+		{{messager.objet}}
+	</p>
+	<p>
+		Reference de Commande :
+		{{messager.orders.reference}}
+	</p>
+    <p>
+        {{messager.createdAt|date('d-m-Y H:m:s')}}
+    </p>
+	{% for message in messager.content %}
+		{% if message[1] == 'client' %}
+
+			<div class="alert alert-primary w-75" role="alert">
+				<p>
+					Client :
+				</p>
+				{{ message[0]|nl2br }}
+			</div>
+		{% else %}
+			<div class=" d-flex justify-content-end">
+				<div class="alert alert-warning w-75 " role="alert">
+					<p>
+						Inginus :
+					</p>
+					{{ message[0]|nl2br }}
+				</div>
+			</div>
+		{% endif %}
+
+	{% endfor %}
+	<hr/>
+	{{form_start(form)}}
+	{{ form_row(form.message,{'attr':{'rows':'6' }})}}
+	<button type="submint" class="btn btn-primary">
+		Envoyer</button>
+	{{form_end(form)}}
+</div>
+
+{% endblock %}

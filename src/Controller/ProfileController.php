@@ -7,6 +7,7 @@ use App\Entity\Order;
 use App\Form\MessageType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -59,7 +60,7 @@ class ProfileController extends AbstractController
             $message->setOrders($order);
             $message->setState(false);
             $message->setObjet($data['objet']);
-            $message->setContent([$data['message']]);
+            $message->setContent([[$data['message'],'client']]);
             //dump($data);
             
             $em->persist($message);
@@ -84,6 +85,36 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/message.html.twig', [
             'messages' => array_reverse($messages),
+        ]);
+    }
+    #[Route('/profile/message/{id}', name: 'profile_message_detail')]
+    public function messageDetail(ManagerRegistry $doctrine,Request $request, Message $message): Response
+    {
+        $em = $doctrine->getManager();
+        $form = $this->createFormBuilder()
+            ->add('message', TextareaType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data  = $form->getData();
+            $info = [];
+            $info += $message->getContent();
+            array_push($info,[$data['message'],'client']);
+            $message->setState(false);
+            $message->setContent($info);
+            dump($info);
+            $em->persist($message);
+            $em->flush();
+
+            $this->addFlash('success_message', 'Félicitation votre Message à été envoyer');
+
+            return $this->redirectToRoute('profile');
+        }
+        
+        return $this->render('profile/message_detail.html.twig', [
+            'messager' => $message,
+            'form' => $form->createView()
         ]);
     }
 }

@@ -29,7 +29,7 @@
                     <td>{{ message.objet }}</td>
                     <td>{{ message.createdAt|date('d/m/Y à m:h') }}</td>
                     <td>{{ message.orders.reference }}</td>
-                    <td> <a href="#" class="btn  col-4 btn-sm btn-outline-primary"> Voir </button></td>
+                    <td> <a href="{{ path('profile_message_detail',{id:message.id})}}" class="btn  col-4 btn-sm btn-outline-primary"> Voir </button></td>
                 </tr>
             {% endfor %}
         </tbody>

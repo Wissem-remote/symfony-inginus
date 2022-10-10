@@ -1,0 +1,79 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Messager
+{% endblock %}
+
+{% block body %}
+	<h1 class="p-2">
+		Vos Article
+	</h1>
+	<a href="{{path('admin')}}" class="btn btn-primary m-2">
+		Articles
+	</a>
+	<a href="{{path('admin_tools')}}" class="btn btn-primary m-2">
+		Accessoires
+	</a>
+	<a href="{{path('admin_order')}}" class="btn btn-primary m-2">
+		Commandes
+		<span class="badge text-bg-danger">
+			{% if notificationOrder|length >= 1  %}
+				{{ notificationOrder|length }}
+			{% endif %}
+		</span>
+	</a>
+	<a href="{{path('admin_messager')}}" class="btn btn-warning m-2">
+		Message
+			{% if notificationSend|length >= 1  %}<span class="badge text-bg-secondary"> {{ notificationSend|length }}</span>{% endif %}
+	</a>
+	<table class="table table-dark  table-striped">
+
+
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Ref Commande</th>
+				<th scope="col">Nom Client</th>
+				<th scope="col">Date création</th>
+				<th scope="col">Etat du Traitement</th>
+				<th scope="col">Total</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for order in  orders %}
+
+				<tr>
+					<th class="ls-lg" scope="row">{{ order.id}}</th>
+					<td>{{ order.reference}}</td>
+					<td>{{ order.user.name}}</td>
+					<td>{{ order.createdateAt|date('d-m-Y H:m:s')}}</td>
+					<td>
+						{% if order.state %}
+							<p class="fw-semibold text-success">
+								Traité
+							</p>
+						{% else %}
+							<p class="fw-semibold text-primary">
+								En attente
+							</p>
+						{% endif %}
+					</td>
+                    <td>{{order.total|number_format(2,',',' ') }} €</td>
+					<td>
+						<a href="#" class="btn  btn-primary">
+							Traitement
+						</a>
+					</td>
+
+
+					{# Button CRUD #}
+
+				</tr>
+			</tbody>
+		{% endfor %}
+
+	</table>
+
+{% endblock %}
+
