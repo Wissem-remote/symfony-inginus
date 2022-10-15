@@ -73,6 +73,13 @@ class PayController extends AbstractController
         // j'initialise ma session
         $session = $request->getSession();
 
+        // je crée une variable pour savoir si l'utisateur est déja venue sur cet page
+
+        $page = $session->get('page',[]);
+        
+        //je test page à une a une valeur true ou pas 
+        if (empty($page)){
+
         // je récupere mon tableaux panier
         $paniers = $session->get('panier', []);
 
@@ -128,15 +135,17 @@ class PayController extends AbstractController
             ->setNameFacturation($nameDetail)
             ->setEmail($emailLivraison)
             ->setState(false)
-            ->setStateSending('en cours')
+            ->setStateSending('En Cours Traitement')
             ->setQuantity($qte);
             
         
         $em->persist($order);
 
         $em->flush();
-        
 
+        // je set mon page pour dire que la valeur est à true
+        $session->set('page', [true]);
+        
         return $this->render('pay/index.html.twig',[
             'paniers' => $paniers,
             'total' => $total,
@@ -147,7 +156,9 @@ class PayController extends AbstractController
             'nameDetail' => $nameDetail,
             'reference' => $reference
         ]);
-
+        }else{
+            return $this->reDirectToRoute('back_url');
+        }
         
     }
 
@@ -164,6 +175,7 @@ class PayController extends AbstractController
         $session->remove('panier');
         $session->remove('total');
         $session->remove('stripe');
+        $session->remove('page');
         return $this->redirectToRoute('home');
     }
 }

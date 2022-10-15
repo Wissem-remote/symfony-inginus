@@ -4,12 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Entity\Order;
+use App\Entity\User;
 use App\Form\MessageType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
@@ -20,7 +23,7 @@ class ProfileController extends AbstractController
         $orders = $doctrine->getRepository(Order::class)->findBy(['user' => $this->getUser()]);
 
         return $this->render('profile/index.html.twig', [
-            'orders' => $orders,
+            'orders' => array_reverse($orders),
         ]);
     }
     #[Route('/profile/order', name: 'profile_order')]
@@ -29,7 +32,7 @@ class ProfileController extends AbstractController
         $orders = $doctrine->getRepository(Order::class)->findBy(['user' => $this->getUser()]);
 
         return $this->render('profile/order.html.twig', [
-            'orders' => $orders,
+            'orders' => array_reverse($orders),
         ]);
     }
     #[Route('/profile/order/check/{id}', name: 'profile_order_detail')]
@@ -114,6 +117,41 @@ class ProfileController extends AbstractController
         
         return $this->render('profile/message_detail.html.twig', [
             'messager' => $message,
+            'form' => $form->createView()
+        ]);
+    }
+    #[Route('/profile/profile', name: 'profile_setProfile')]
+    public function setProfile( ManagerRegistry $doctrine, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
+    {
+        $user = $doctrine->getRepository(User::class)->find($this->getUser()->getId());
+        $em = $doctrine->getManager();
+        
+        dump($user);
+        $form = $this->createFormBuilder()
+                    ->add('oldPassword', PasswordType::class)
+                    ->add('newPassword', PasswordType::class)
+                    ->getForm();
+        
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $data  = $form->getData();
+            $userNewPassword = $userPasswordHasher->hashPassword($user, $data['newPassword']);
+
+            if($userPasswordHasher->isPasswordValid($user, $data['oldPassword'])){
+                $user->setPassword($userNewPassword);
+                dump($user);
+
+                $em->persist($user);
+                $em->flush();
+
+                $this->addFlash('success_pass',"Félicitation votre mot-passe vient d'etre modifier !");
+                
+            }else{
+                $this->addFlash('warning_pass', "Désoler votre mot-passe ne correspond pas !");
+            }
+        }
+        return $this->render('profile/profile.html.twig', [
             'form' => $form->createView()
         ]);
     }

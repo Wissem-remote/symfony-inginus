@@ -21,7 +21,13 @@
 		<link rel="stylesheet" href="{{asset('css/style_media_mobile.css')}}">
 		<link rel="stylesheet" href="{{asset('css/style_media_mobile_xs.css')}}">
 		{% block stylesheets %}
-			{# Lien CSS #}
+		<style>
+        @media screen and (max-width: 840px){
+            .panier{
+                width: 100%!important;
+            }
+            }
+        </style>
 		{% endblock %}
 
 
@@ -46,67 +52,45 @@
         <div class="container mt-4 mb-4">
             <h2>Félicitation votre commande à été passé</h2>
             </br>
-            <p> <span class="fw-semibold">Reference :</span> {{ reference }} </p>
-            <p> <span class="fw-semibold">Email :</span> {{ emailLivraisson }} </p>
-            
-                <div class="row d-flex justify-content-lg-between ">
-                    {# Adress de livraisson #}
-                    <div class="col-3">
-                    <p class="fw-bold">Votre Adresses de Livraison </p>
-                    <p><span class="fw-semibold">Adresse :</span> {{ adressLivraison['line1'] }} </p>
-                    {% if adressLivraison['line2']%}<p><span class="fw-semibold"> Complément : </span> {{ adressLivraison['line2']}}</p>{% endif %}
-                    <p><span class="fw-semibold">Ville :</span> {{adressLivraison['city']}} </p>
-                    <p><span class="fw-semibold">Code Postal :</span>{{ adressLivraison['postal_code']}}</p>
+            <div class="rounded p-3" style="background: #f3f3f3;">
+                <p> <span class="fw-semibold">Reference :</span> {{ reference }} </p>
+                <p> <span class="fw-semibold">Email :</span> {{ emailLivraisson }} </p>
+                
+                    <div class="row d-flex justify-content-lg-between justify-content-md-between ">
+                        {# Adress de livraisson #}
+                        <div class="col-12 col-lg-3 col-md-4">
+                            <p class="fw-bold">Votre Adresses de Livraison </p>
+                            <p><span class="fw-semibold">Adresse :</span> {{ adressLivraison['line1'] }} </p>
+                            {% if adressLivraison['line2']%}<p><span class="fw-semibold"> Complément : </span> {{ adressLivraison['line2']}}</p>{% endif %}
+                            <p><span class="fw-semibold">Ville :</span> {{adressLivraison['city']}} </p>
+                            <p><span class="fw-semibold">Code Postal :</span>{{ adressLivraison['postal_code']}}</p>
+                        </div>
+                        {# Adress de Facturation #}
+                        <div class="col-12 col-lg-3 col-md-4">
+                            <p class="fw-bold">Votre Adresses de Facturation </p>
+                            <p><span class="fw-semibold">Adresse :</span> {{ adressDetail['line1'] }} </p>
+                            {% if adressDetail['line2']%}<p><span class="fw-semibold"> Complément : </span> {{ adressDetail['line2']}}</p>{% endif %}
+                            <p><span class="fw-semibold">Ville :</span> {{adressDetail['city']}} </p>
+                            <p><span class="fw-semibold">Code Postal : </span>{{ adressDetail['postal_code']}}</p>
+                        </div>
 
-                    </div>
-                    {# Adress de Facturation #}
-                    <div class="col-3">
-                    <p class="fw-bold">Votre Adresses de Facturation </p>
-                    <p><span class="fw-semibold">Adresse :</span> {{ adressDetail['line1'] }} </p>
-                    {% if adressDetail['line2']%}<p><span class="fw-semibold"> Complément : </span> {{ adressDetail['line2']}}</p>{% endif %}
-                    <p><span class="fw-semibold">Ville :</span> {{adressDetail['city']}} </p>
-                    <p><span class="fw-semibold">Code Postal : </span>{{ adressDetail['postal_code']}}</p>
-                    </div>
+                        </div>
+                        </br>
+                        <aside class="w-100 m-auto rounded  mb-3 pb-2 " style="  min-height: 20vh; background: white;">
+								<div class=" mb-2" style=" min-height: 2vh;background:turquoise;border-radius: 0.375rem 0.375rem 0px 0px;"></div>
+								    {% for panier in app.session.get('panier')%}
+                                        <div class="row p-3 border w-50 m-auto rounded mb-2 panier">
+                                        <div class="col-lg-6 col-md-6 col-12 fw-semibold text-center text-md-start text-lg-start p-2">Num : <span class="fw-normal">{{ loop.index }}</span></div>
+                                        <div class="col-lg-6 col-12 col-md-6 fw-semibold text-center p-2 text-md-end text-lg-end">Quatité : <span class="fw-normal">{{ panier.qte }}</span></div>
+                                        <div class="col-lg-6 col-12 col-md-6 fw-semibold  text-center text-md-start text-lg-start p-2">Nom Article :<span class="fw-normal">{{ panier.article.nom }} </span> </div>
+                                        <div class="col-lg-6 col-12 col-md-6  fw-semibold text-center text-md-end text-lg-end p-2">Prix : <span class="fw-normal">{{ (panier.qte * panier.article.prix)|number_format(2,',',' ') }} €</span></div>
+                                        </div>
+								    {% endfor%}
+									<p class="fw-semibold text-center border w-50 m-auto rounded"> Total : {{ total[0]|number_format(2,',',' ') }} €</p>
+						</aside>
+                    
+            </div>
 
-                </div>
-                    </br>
-                <div class="row">
-                    <div class="col-12">
-                        <table class="table ">
-
-                            <thead class="table-info">
-                                <tr>
-                                    <th scope="col">N°</th>
-                                    <th scope="col">NomArticle</th>
-                                    <th scope="col">Qté</th>
-                                    <th scope="col">Prix</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for panier in app.session.get('panier')%}
-
-                                    <tr>
-                                        <th scope="row">{{ loop.index }}</th>
-                                        <td>{{ panier.article.nom}}</td>
-                                        <td>{{ panier.qte}}</td>
-                                        <td>{{ (panier.qte * panier.article.prix)|number_format(2,',',' ')}} €</td>
-                                    
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                                <tfoot >
-                                    <th colspan="2"></th>
-                                    <th class="text-end p-3">Total : </th>
-                                    <th>{{ total[0]|number_format(2,',',' ') }} €</th>
-                                </tfoot>
-
-                        </table>
-
-                    </div>
-                </div>
-            
-        </div>
         
 </main>
 <footer>

@@ -1,12 +1,29 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Messager
+{% block title %}Commandes
 {% endblock %}
 
 {% block body %}
 	<h1 class="p-2">
-		Vos Article
+		Vos Commandes
 	</h1>
+	{% for message in  app.flashes('success_order') %}
+
+		<div class="alert alert-success alert-dismissible success fade show" role="alert">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+
+	{% endfor %}
+	{% for message in  app.flashes('success_delete') %}
+
+		<div class="alert alert-warning alert-dismissible warning fade show" role="alert">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+
+	{% endfor %}
+
 	<a href="{{path('admin')}}" class="btn btn-primary m-2">
 		Articles
 	</a>
@@ -15,11 +32,11 @@
 	</a>
 	<a href="{{path('admin_order')}}" class="btn btn-primary m-2">
 		Commandes
-		<span class="badge text-bg-danger">
 			{% if notificationOrder|length >= 1  %}
+		<span class="badge text-bg-danger">
 				{{ notificationOrder|length }}
-			{% endif %}
 		</span>
+			{% endif %}
 	</a>
 	<a href="{{path('admin_messager')}}" class="btn btn-warning m-2">
 		Message
@@ -35,6 +52,7 @@
 				<th scope="col">Nom Client</th>
 				<th scope="col">Date création</th>
 				<th scope="col">Etat du Traitement</th>
+				<th scope="col">Etat du Livraison</th>
 				<th scope="col">Total</th>
 				<th scope="col">Action</th>
 			</tr>
@@ -59,10 +77,14 @@
 							</p>
 						{% endif %}
 					</td>
+					<td>{{ order.stateSending }}</td>
                     <td>{{order.total|number_format(2,',',' ') }} €</td>
 					<td>
-						<a href="#" class="btn  btn-primary">
+						<a href="{{ path('admin_order_update',{id : order.id})}}" class="btn  btn-sm btn-primary">
 							Traitement
+						</a>
+						<a href="{{ path('admin_order_delete',{id : order.id})}}" onclick=" return confirm('Etez-vous bien sur de vouloire supprimer la commande !')" class="btn  btn-sm btn-danger">
+							Suprimer
 						</a>
 					</td>
 

@@ -62,9 +62,10 @@
 			<th scope="col">Image</th>
 			<th scope="col">Nom</th>
 			<th scope="col">Qte Restant</th>
+			<th scope="col">En Stock</th>
 			<th scope="col">Date création</th>
 			<th scope="col">Prix</th>
-			<th scope="col">Action</th>
+			<th scope="col ">Action</th>
 		</tr>
 	</thead>
 
@@ -76,6 +77,13 @@
 				<td><img src="{{ asset('uploads/article/'~article.image)}}" with="30" height="30" alt="{{ article.nom}}" /></td>
 				<td>{{ article.nom}}</td>
 				<td>{{ article.qte}}</td>
+				<td>
+				{% if article.qte <= 0 %}
+				<p class="text-danger"> En Rupture </p> 
+				{% else %}
+				<p class="text-success"> En Stock </p>
+				{% endif %}
+				</td>
 				<td>{{ article.createDateAt|date('d-m-Y H-m-s')}}</td>
 				<td>{{ article.prix}} €</td>
 				<td>

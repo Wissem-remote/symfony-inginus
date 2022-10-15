@@ -6,8 +6,12 @@
 <link rel="stylesheet" href="{{asset('css/login/style_media_mobile.css')}}">
 {% endblock %}
 {% block body %}
-<section style="background:  url('{{ asset('/img/montagne.jpg')}}') fixed no-repeat; background-size: cover;">
-        <div class="w-50">
+
+<section style="background:  url('https://images.pexels.com/photos/2114014/pexels-photo-2114014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') fixed no-repeat; background-size: cover;">
+
+
+
+        <div class="w-50 ">
             <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

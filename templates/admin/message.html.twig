@@ -6,6 +6,15 @@
 <h1 class="p-2">
 	Vos Messages
 </h1>
+{% for message in  app.flashes('success_message') %}
+
+	<div class="alert alert-success alert-dismissible success fade show" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+{% endfor %}
+
 <a href="{{path('admin')}}" class="btn btn-primary m-2">
 	Articles
 </a>

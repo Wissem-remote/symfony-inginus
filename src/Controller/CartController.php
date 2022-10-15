@@ -35,7 +35,7 @@ class CartController extends AbstractController
         
         
 
-        //dump($this->getUser());
+        dump($panier);
 
         return $this->render('cart/index.html.twig', [
             

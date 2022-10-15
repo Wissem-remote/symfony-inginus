@@ -3,3 +3,7 @@ section:nth-child(1){
     width: 100%;
 
 }
+
+button:hover a{
+    color:white!important;
+}

@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset('css/cart/style.css')}}">
+
 {% endblock %}
 
 {% block body %}
@@ -15,64 +16,112 @@
 {% if app.session.get('panier') is not empty%}
 
             <aside class="row">
-                <div class="col-8">
-                    <table class="table ">
-
-                        <thead class="table-info">
-
-                            <tr>
-                                <th scope="col">N°</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Qté</th>
-                                <th scope="col">Prix</th>
-                                <th scope="col" class=" text-center">Action</th>
-                            </tr>
-                        </thead>
-                                    <tbody>
-                                        {% for panier in app.session.get('panier')%}
-
-                                        <tr>
-                                            <th scope="row">{{ loop.index }}</th>
-                                            <td>{{ panier.article.nom}}</td>
-                                            <td>{{ panier.qte}}</td>
-                                            <td>{{ (panier.qte * panier.article.prix)|number_format(2,',',' ')}} €</td>
-
-                                            <td class="text-center">
-
-                                                <div class="btn-group btn-sm">
-
-                                                    <a href="{{ path('cart_remove',{ id : panier.article.id, 'origin':app.request.attributes.get('_route')} ) }}" class="btn btn-outline-success  ">
-                                                        <i class="bi bi-dash "></i>
+                <div class="col-lg-8 col-md-12 col-12 ">
+                     <aside class="w-100 m-auto rounded  mb-3 pb-2 " style="  min-height: 20vh; background: white;">
+								<div class=" mb-2  " style="background:#CEF4FC; min-height: 4vh;border-radius: 0.375rem 0.375rem 0px 0px;">
+                                <p class=" text-center "> Votre Panier </p>
+                                </div>
+								    {% for panier in app.session.get('panier')%}
+                                        <div class="row p-3 border w-100 m-auto rounded mb-2 panier">
+                                        <div class="col-lg-2 col-md-12 col-12 fw-semibold text-center text-md-center text-lg-start p-2"><img style="object-fit:cover;"width="120" height="60" src="{{ asset('uploads/article/'~panier.article.image)}}" alt="#" /></div>
+                                        <div class="col-lg-3 col-12 col-md-12 fw-semibold  text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Nom Article :<span class="fw-normal">{{ panier.article.nom }} </span> </div>
+                                        <div class="col-lg-2 col-12 col-md-12 fw-semibold text-center p-2 text-md-center text-lg-start d-flex justify-content-center align-items-md-center align-items-lg-center">Quantité : <span class="fw-normal"> {{ panier.qte }}</span></div>
+                                        <div class="col-lg-2 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">
+                                                    <div class="btn-group btn-sm">
+                                                    {# Button Moin #}
+                                                    <a href="{{ path('cart_remove',{ id : panier.article.id, 'origin':app.request.attributes.get('_route')} ) }}" 
+                                                    class="btn btn-sm 
+                                                    {% if panier.qte >= panier.article.qte    %}
+                                                    btn-success
+                                                    {% else %}
+                                                    btn-outline-success
+                                                    {% endif %}
+                                                    ">
+                                                    <i class="bi bi-dash "></i>
                                                     </a>
-
-                                                    <a href="#" class="btn btn-success "></a>
-
-                                                    <a href="{{ path('cart_add',{ id : panier.article.id, origin : app.request.attributes.get('_route')} )}}" class="btn btn-outline-success ">
+                                                    {# Button Mileux #}
+                                                    <a href="#" class="btn
+                                                    {% if panier.qte >= panier.article.qte    %}
+                                                    btn-danger
+                                                    {% else %}
+                                                    btn-success
+                                                    {% endif %}
+                                                    btn-sm">
+                                                    </a>
+                                                    {# Button Plus #}
+                                                    <button
+                                                    {% if panier.qte >= panier.article.qte    %}
+                                                    disabled
+                                                    {% endif %}
+                                                    class="btn 
+                                                    {% if panier.qte >= panier.article.qte    %}
+                                                    btn-outline-danger
+                                                    {% else %}
+                                                    btn-outline-success
+                                                    {% endif %}
+                                                    btn-sm li">
+                                                    <a  class=" text-decoration-none 
+                                                    {% if panier.qte >= panier.article.qte    %}
+                                                    text-danger
+                                                    {% else %}
+                                                    text-success
+                                                    {% endif %}
+                                                    " href="{{ path('cart_add',{ id : panier.article.id, origin : app.request.attributes.get('_route')} )}}" >
 
                                                         <i class="bi bi-plus"></i>
                                                     </a>
-                                                </div>
+                                                    </button>
 
-
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                            </table>
+                                                    </div>
+                                        </div>
+                                            <div class="col-lg-2 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Prix : <span class="fw-normal">{{ (panier.qte * panier.article.prix)|number_format(2,',',' ') }} €</span></div>
+                                        </div>
+								    {% endfor%}
+									
+						</aside>
 
                 </div>
 
-                <div class="col-4">
+                <div class="col-lg-4 col-md-12 col-12">
                     <div class="list-group">
                     <li class="list-group-item list-group-item-info border-0 text-center fw-light fs-5"> Sommaire de Votre Commande</li>
                     <li class="list-group-item text-center p-5 fs-4">Total net : {{ app.session.get('total')[0]|number_format(2,',',' ') }} €</li>
 
                     
+                    {% if app.user is not empty%}
                     <form action="{{ path('pay') }}" method="POST">
                     <li class="list-group-item d-flex justify-content-center">
                     <button type="submit" class="btn btn-lg btn-primary w-75 "> Payer </button>
                     </li>
                     </form>
+                    {% else %}
+                 
+                    <li class="list-group-item d-flex justify-content-center">
+                    <button type="button" class="btn btn-lg w-75 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Payer
+                    </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title text-center fs-5" id="exampleModalLabel">Pensez à vous Connecter !</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body d-flex justify-content-center">
+                                    <div >
+                                        <a href="{{ path('app_login') }}" class="btn btn-primary"> Connecter-Vous ! </a>
+                                        <a href="{{ path('app_register') }}" class="btn btn-info"> Inscrivez-Vous ! </a>
+                                    </div>
+                                </div>
+                                
+                                </div>
+                            </div>
+                            </div>
+                    </li>
+                  
+                    {% endif %}
                     </div>
                 </div>
             <aside>

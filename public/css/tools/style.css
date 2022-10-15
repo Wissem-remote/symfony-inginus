@@ -1,0 +1,17 @@
+/* section 1 */
+
+section:nth-child(1){
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    color: whitesmoke;
+    background: #42858C;
+    background-image:linear-gradient(360deg, #ffffff38, transparent);
+}
+section:nth-child(1) h2{
+    font-size: 25vh;
+    font-style: italic;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.26);
+    animation:linear move 2s;
+}

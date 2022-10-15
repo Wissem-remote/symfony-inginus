@@ -1,22 +1,22 @@
 section:nth-child(1){
-min-height: 80vh;
+min-height: 110vh;
 display: flex;
 justify-content: center;
 align-items: center;
 }
 
 .h3{
-    color: rgb(19, 19, 19);
+    color: whitesmoke;
     font-size: 3.3rem;
     font-weight: 500;
-    text-shadow: 0 1px 0 rgb(256 256 256 / 35%);
+    text-shadow: 0 1px 0 black;
     animation: move ease 1s;
 }
 span{
-    color: rgb(19, 19, 19);
+    color:whitesmoke;
     font-size: 1.8rem;
     font-weight: 500;
-    text-shadow: 0 1px 0 rgb(256 256 256 / 35%);
+    text-shadow: 0 1px 0 black;
     animation: move ease 1s;
 }
 .form-control{

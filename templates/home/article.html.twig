@@ -19,25 +19,32 @@
 
     <aside class="row">
 
-        <article class="col-8 h-100 p-2 border border-1 d-flex justify-content-center ">
+        <article class="col-12 col-lg-8 h-100 p-2 border border-1 d-flex justify-content-center ">
         <img  src="{{ asset('uploads/article/' ~ article.image)}}" width="80%" height="100%" alt="{{ article.nom}}" />
         </article>
 
-        <article class="col-4 h-100 p-3 border border-1  d-flex flex-column ">
+        <article class="col-12 mt-4  col-lg-4 mt-lg-0 h-100  p-3 border border-1  d-flex flex-column ">
         <h3 class="text-center p-2">Titre : {{ article.nom}} </h3>
         
         <p class="text-center p-2">Description : {{ article.content}}</p>
 
         <p class="text-center p-2 fs-3">Prix : {{ article.prix}} €</p>
         
+        {% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte  or article.qte <= 0 %}
+        <p class="text-danger text-center fs-3 p-2 fw-semibold">EN RUPTURE DE STOCK</p>
+        {% else %}
         <p class="text-center p-2 fs-3 text-success">En Stock</p>
-
+        {% endif %}
        
-
-        <a href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;" class=" m-auto btn btn-success w-75  ">
+        <button 
+        {% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte   or article.qte <= 0 %}
+        disabled
+        {% endif %}
+        class="m-auto btn btn-success w-75 ">
+        <a href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;" class=" text-white text-decoration-none  ">
             Ajouter
         </a>
-
+        </button>
 
         </article>
     </aside>

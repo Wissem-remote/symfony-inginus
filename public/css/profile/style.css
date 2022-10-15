@@ -23,3 +23,23 @@ h1 span{
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.26);
 }
 
+/* tableaux */
+.tab{
+    min-height: 20vh;
+    background: #f3f3f3;
+}
+.tabs{
+    min-height: 20vh;
+    background: white;
+}
+.tabs-top{
+    min-height: 2vh;
+    background:turquoise;
+    border-radius: 0.375rem 0.375rem 0px 0px;
+}
+
+@media screen and (max-width: 840px){
+    .panier{
+        width: 100%!important;
+    }
+}

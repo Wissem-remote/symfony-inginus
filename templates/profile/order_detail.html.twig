@@ -1,87 +1,64 @@
 {% extends 'baseProfile.html.twig' %}
 
-{% block title %}Vos Commandes{% endblock %}
+{% block title %}Votre Commande{% endblock %}
 
 {% block body %}
 <div class="container mt-4 mb-4">
 	<h2>Votre Commande</h2>
 </br>
-
-
-<div class="row d-flex justify-content-lg-between ">
-	{# Adress de livraisson #}
-	<div class="col-3">
-		<p class="fw-bold">Votre Adresses de Livraison
-		</p>
-		<p>
-			<span class="fw-semibold">Adresse :</span>
-			{{ order.adressLivraison[0]['line1'] }}
-		</p>
-		{% if order.adressLivraison[0]['line2']%}
-			<p>
-				<span class="fw-semibold">
-					Complément :
-				</span>
-				{{ order.adressLivraison[0]['line2']}}</p>
-		{% endif %}
-		<p>
-			<span class="fw-semibold">Ville :</span>
-			{{order.adressLivraison[0]['city']}}
-		</p>
-		<p>
-			<span class="fw-semibold">Code Postal :</span>
-			{{ order.adressLivraison[0]['postal_code']}}</p>
-	</div>
-	<div class="col-3">
-<p>
-	<span class="fw-semibold">Reference :</span>
-	{{ order.reference }}
-</p>
-<p>
-	<span class="fw-semibold">Email :</span>
-	{{ order.email }}
-</p>
-
-	</div>
-
-</div>
-</br>
-<div class="row">
-<div class="col-12">
-	<table class="table ">
-
-		<thead class="table-info">
-			<tr>
-				<th scope="col">N°</th>
-				<th scope="col">NomArticle</th>
-				<th scope="col">Qté</th>
-				<th scope="col">Prix</th>
-
-			</tr>
-		</thead>
-		<tbody>
-			{% for panier in order.panier %}
-
-				<tr>
-					<th scope="row">{{ loop.index }}</th>
-					<td>{{ panier.article.nom}}</td>
-					<td>{{ panier.qte}}</td>
-					<td>{{ (panier.qte * panier.article.prix)|number_format(2,',',' ')}} €</td>
-
-				</tr>
-			{% endfor %}
-		</tbody>
-		<tfoot>
-			<th colspan="2"></th>
-			<th class="text-end p-3">Total :
-			</th>
-			<th>{{ order.total|number_format(2,',',' ') }} €</th>
-		</tfoot>
-
-	</table>
-
-</div>
-</div>
+		<div class="w-75 m-auto rounded tab p-4">
+			
+			<div class="row d-flex justify-content-lg-between ">
+					{# Adress de livraisson #}
+					<div class="col-lg-3 col-md-3 col-12">
+						<p class="fw-bold">Votre Adresses de Livraison
+						</p>
+						<p>
+							<span class="fw-semibold">Adresse :</span>
+							{{ order.adressLivraison[0]['line1'] }}
+						</p>
+						{% if order.adressLivraison[0]['line2']%}
+							<p>
+								<span class="fw-semibold">
+									Complément :
+								</span>
+								{{ order.adressLivraison[0]['line2']}}</p>
+						{% endif %}
+						<p>
+							<span class="fw-semibold">Ville :</span>
+							{{order.adressLivraison[0]['city']}}
+						</p>
+						<p>
+							<span class="fw-semibold">Code Postal :</span>
+							{{ order.adressLivraison[0]['postal_code']}}</p>
+					</div>
+					<div class="col-lg-3 col-md-3 col-12">
+						<p>
+							<span class="fw-semibold">Reference :</span>
+							{{ order.reference }}
+						</p>
+						<p>
+							<span class="fw-semibold">Email :</span>
+							{{ order.email }}
+						</p>
+					</div>
+			</div>
+							</br>
+							</br>
+							</br>
+							<aside class="w-100 m-auto rounded tabs mb-3 pb-2 ">
+								<div class="tabs-top mb-2"></div>
+								{% for panier in order.panier %}
+									<div class="row p-3 border w-50 m-auto rounded mb-2 panier">
+									<div class="col-lg-6 col-md-6 col-12 fw-semibold text-center text-md-start text-lg-start p-2">Num : <span class="fw-normal">{{ loop.index }}</span></div>
+									<div class="col-lg-6 col-12 col-md-6  fw-semibold text-center text-md-end text-lg-end p-2">Prix : <span class="fw-normal">{{ (panier.qte * panier.article.prix)|number_format(2,',',' ') }} €</span></div>
+									<div class="col-lg-6 col-12 col-md-6 fw-semibold  text-center text-md-start text-lg-start p-2">Nom Article :<span class="fw-normal">{{ panier.article.nom }} </span> </div>
+									<div class="col-lg-6 col-12 col-md-6 fw-semibold text-center p-2 text-md-end text-lg-end">Quatité : <span class="fw-normal">{{ panier.qte }}</span></div>
+									</div>
+								{% endfor%}
+									<p class="fw-semibold text-center border w-50 m-auto rounded"> Total : {{ order.total|number_format(2,',',' ') }} €</p>
+							</aside>
+							
 </div> 
 
 {% endblock %}
