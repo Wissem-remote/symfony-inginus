@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(ArticleRepository $article, SessionInterface $session): Response
     {
-        $articles = array_reverse($article->findAll(['type' => 'Article']));
+        $articles = array_reverse($article->findBy(['type' => 'Article'],[],6));
         
         $panier = $session->get('panier',[]);
         return $this->render('home/index.html.twig', [
@@ -23,11 +23,22 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/store', name: 'store')]
-    public function store(): Response
+    #[Route('/store/{page?1}/{nb?6}', name: 'store')]
+    public function store(ArticleRepository $article,$page,$nb): Response
     {
+        $articles = $article->findBy(['type' => 'Article']);
+        //$articleActuel = $article->findByPage('Article',$nb,($page - 1) * $nb,$prix);
+        $articleActuel = $article->findBy(['type' => 'Article'],[],$nb,($page - 1) * $nb);
+        $nbArticles =count($articles);
+        $nbPage = ceil($nbArticles / $nb);
+        
         return $this->render('home/store.html.twig', [
-            'nav' => 'store'
+            'nav' => 'store',
+            'articles' => $articleActuel,
+            'isPagination' =>  true,
+            'nbPage' => $nbPage,
+            'page' => $page,
+            'nb' => $nb
         ]);
     }
 

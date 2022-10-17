@@ -42,15 +42,18 @@ class ArticleRepository extends ServiceEntityRepository
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
-//    public function findByExampleField($value): array
+//    public function findByPage($value,$nb,$max,$prix): array
 //    {
 //        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
+//             ->andWhere('a.type = :val')
+//             ->setParameter('val',$value)
+//             ->andWhere('a.prix < :prix')
+//             ->setParameter('prix', $prix)
+//             ->orderBy('a.id', 'ASC')
+//             ->setFirstResult($max)
+//             ->setMaxResults($nb)
+//             ->getQuery()
+//             ->getResult()
 //        ;
 //    }
 

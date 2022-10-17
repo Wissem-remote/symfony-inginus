@@ -62,7 +62,7 @@
 				<div class="col-12 me-4 col-lg-3 col-md-4 col-sm-6 carousel-cell">
 
 						<div class="card">
-							<img src="{{ asset('/uploads/article/' ~ article.image)}}" height="200" style="object-fit:cover;" class="card-img-top" alt="Drone">
+							<img src="{{ asset('/uploads/article/' ~ article.image|default('default/Drone_C1.jpg'))}}" height="200" style="object-fit:cover;" class="card-img-top" alt="Drone">
 							<div class="card-body">
 
 									<div class="infos">
@@ -77,15 +77,14 @@
 									<div class="infos">
 									
 										
-										<button
+										<a class="
 										{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
-										disabled
+										isDisabled
 										{% endif %}
-										class="btn btn-success ">
-											<a class="text-decoration-none text-white" href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;">
+										btn btn-success" href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;">
 											Ajouter
 											</a>
-											</button>
+											
 											
 										<a href="{{ path('article',{id : article.id})}}" class="btn btn-primary" style=" text-shadow:none;">
 											Voir

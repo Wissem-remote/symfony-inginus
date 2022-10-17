@@ -23,58 +23,62 @@
                                 </div>
 								    {% for panier in app.session.get('panier')%}
                                         <div class="row p-3 border w-100 m-auto rounded mb-2 panier">
-                                        <div class="col-lg-2 col-md-12 col-12 fw-semibold text-center text-md-center text-lg-start p-2"><img style="object-fit:cover;"width="120" height="60" src="{{ asset('uploads/article/'~panier.article.image)}}" alt="#" /></div>
-                                        <div class="col-lg-3 col-12 col-md-12 fw-semibold  text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Nom Article :<span class="fw-normal">{{ panier.article.nom }} </span> </div>
-                                        <div class="col-lg-2 col-12 col-md-12 fw-semibold text-center p-2 text-md-center text-lg-start d-flex justify-content-center align-items-md-center align-items-lg-center">Quantité : <span class="fw-normal"> {{ panier.qte }}</span></div>
-                                        <div class="col-lg-2 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">
-                                                    <div class="btn-group btn-sm">
-                                                    {# Button Moin #}
-                                                    <a href="{{ path('cart_remove',{ id : panier.article.id, 'origin':app.request.attributes.get('_route')} ) }}" 
-                                                    class="btn btn-sm 
-                                                    {% if panier.qte >= panier.article.qte    %}
-                                                    btn-success
-                                                    {% else %}
-                                                    btn-outline-success
-                                                    {% endif %}
-                                                    ">
-                                                    <i class="bi bi-dash "></i>
-                                                    </a>
-                                                    {# Button Mileux #}
-                                                    <a href="#" class="btn
-                                                    {% if panier.qte >= panier.article.qte    %}
-                                                    btn-danger
-                                                    {% else %}
-                                                    btn-success
-                                                    {% endif %}
-                                                    btn-sm">
-                                                    </a>
-                                                    {# Button Plus #}
-                                                    <button
-                                                    {% if panier.qte >= panier.article.qte    %}
-                                                    disabled
-                                                    {% endif %}
-                                                    class="btn 
-                                                    {% if panier.qte >= panier.article.qte    %}
-                                                    btn-outline-danger
-                                                    {% else %}
-                                                    btn-outline-success
-                                                    {% endif %}
-                                                    btn-sm li">
-                                                    <a  class=" text-decoration-none 
-                                                    {% if panier.qte >= panier.article.qte    %}
-                                                    text-danger
-                                                    {% else %}
-                                                    text-success
-                                                    {% endif %}
-                                                    " href="{{ path('cart_add',{ id : panier.article.id, origin : app.request.attributes.get('_route')} )}}" >
-
-                                                        <i class="bi bi-plus"></i>
-                                                    </a>
-                                                    </button>
-
+                                            <div class="row">
+                                                <div class=" col-md-6 col-lg-2">
+                                                    <div class="col-lg-12 col-md-12 col-12 fw-semibold text-center text-md-center text-lg-start p-2">
+                                                    <img style="object-fit:cover;" class="figure-img img-fluid rounded" src="{{ asset('uploads/article/'~panier.article.image|default('default/Drone_C1.jpg'))}}" alt="#" />
                                                     </div>
-                                        </div>
-                                            <div class="col-lg-2 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Prix : <span class="fw-normal">{{ (panier.qte * panier.article.prix)|number_format(2,',',' ') }} €</span></div>
+                                                </div>
+                                                <div class=" col-md-6 col-lg-10  ">
+                                                    <div class="row mt-3">
+                                                            <div  class=" col-lg-4 col-12 col-md-12 fw-semibold  text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Nom Article : <span class=" ps-2 fw-normal">{{ panier.article.nom }} </span> </div>
+                                                            <div class="col-lg-3 col-12 col-md-12 fw-semibold text-center p-2 text-md-center text-lg-start d-flex justify-content-center align-items-md-center align-items-lg-center">Quantité : <span class=" ps-2 fw-normal"> {{ panier.qte }}</span></div>
+                                                            <div class="col-lg-2 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">
+                                                                        <div class="btn-group btn-sm">
+                                                                        {# Button Moin #}
+                                                                        <a href="{{ path('cart_remove',{ id : panier.article.id, 'origin':app.request.attributes.get('_route')} ) }}" 
+                                                                        class="btn btn-sm 
+                                                                        {% if panier.qte >= panier.article.qte    %}
+                                                                        btn-success
+                                                                        {% else %}
+                                                                        btn-outline-success
+                                                                        {% endif %}
+                                                                        ">
+                                                                        <i class="bi bi-dash "></i>
+                                                                        </a>
+                                                                        {# Button Mileux #}
+                                                                        <a href="#" class="btn
+                                                                        {% if panier.qte >= panier.article.qte    %}
+                                                                        btn-danger
+                                                                        {% else %}
+                                                                        btn-success
+                                                                        {% endif %}
+                                                                        btn-sm">
+                                                                        </a>
+                                                                        {# Button Plus #}
+                                                                        <a
+                                                                        class="btn 
+                                                                        {% if panier.qte >= panier.article.qte    %}
+                                                                        isDisabled
+                                                                        {% endif %}
+                                                                        {% if panier.qte >= panier.article.qte    %}
+                                                                        btn-outline-danger
+                                                                        {% else %}
+                                                                        btn-outline-success
+                                                                        {% endif %}
+                                                                        btn-sm li" href="{{ path('cart_add',{ id : panier.article.id, origin : app.request.attributes.get('_route')} )}}" >
+
+                                                                            <i class="bi bi-plus"></i>
+                                                                        </a>
+                                                                        
+
+                                                                        </div>
+                                                            </div>
+                                                                <div class="col-lg-3 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Prix : <span class="ps-2 fw-normal">{{ (panier.qte * panier.article.prix)|number_format(2,',',' ') }} €</span></div>
+                                                        </div>
+                                                </div>
+                                            {# row #}
+                                            </div>
                                         </div>
 								    {% endfor%}
 									

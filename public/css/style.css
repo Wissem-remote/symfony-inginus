@@ -130,7 +130,10 @@ footer p{
     font-size:100%;
 }
 
-
+.isDisabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
 
 @keyframes move{
     from{

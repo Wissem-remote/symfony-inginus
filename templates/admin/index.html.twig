@@ -74,7 +74,7 @@
 
 			<tr>
 				<th class="ls-lg" scope="row">{{ article.id}}</th>
-				<td><img src="{{ asset('uploads/article/'~article.image)}}" with="30" height="30" alt="{{ article.nom}}" /></td>
+				<td><img src="{{ asset('uploads/article/'~article.image|default('default/Drone_C1.jpg'))}}" with="30" height="30" alt="{{ article.nom}}" /></td>
 				<td>{{ article.nom}}</td>
 				<td>{{ article.qte}}</td>
 				<td>

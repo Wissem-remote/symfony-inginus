@@ -105,4 +105,7 @@ section:nth-child(3) h2 span{
 .btn-group{
     text-shadow: none;
 }
-
+.isDisabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

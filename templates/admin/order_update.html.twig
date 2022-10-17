@@ -4,59 +4,94 @@
 {% endblock %}
 
 {% block body %}
-<div class="row d-flex justify-content-lg-evenly ">
+{% set etat = false %}
+        <div class="row mb-4">
+            {# Stock Actuel #}
+            <div class="col-11 m-auto bg-light rounded border border-1">
+                <h2 class="text-secondary text-center p-2">Stock Actuel Articles ou Accessoires Disponible</h2>
+                <div class="row d-flex justify-content-center">
+                {% for key, panier in order.panier %}
+                    {% for article in articles %}
+                        {% if article.id == key %}
+                            <div class="col-2 rounded border border-1 m-2 {% if article.qte <= 1 %} border-danger {% else%} border-success {% endif %}">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-6 p-2">
+                                    <img class="figure-img img-fluid rounded" style="object)fit:cover;" src="{{ asset('uploads/article/'~ article.image)}}" alt="{{panier.article.nom}}"/>
+                                    </div>
 
-    <div class=" col-12 col-lg-5 col-md-12 bg-light rounded border border-1">
-        <h2 class="text-secondary text-center p-2">Panier</h2>
-            <table class="table fs-5 mt-5 text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">N°</th>
-                        <th scope="col">NomArticle</th>
-                        <th scope="col">Qté</th>
-                        <th scope="col">Prix</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for panier in order.panier %}
-                    <tr>
-                        <th scope="row">{{ loop.index }}</th>
-                        <td>{{ panier.article.nom}}</td>
-                        <td>{{ panier.qte}}</td>
-                        <td>{{ (panier.qte * panier.article.prix)|number_format(2,',',' ')}} €</td>
-                    </tr>
+                                    <div class=" text-center col-6 p-2 {% if article.qte <= 1 %}text-danger {% else%} text-success {% endif %}">
+                                    <span class="">{{ article.nom }}</span>
+                                    <p class=""> Qté : {{ article.qte }} <p>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            {%  if article.qte <= 1 %}
+                                {% set etat =true %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
-                </tbody>
-                <tfoot>
-                    <th colspan="2"></th>
-                    <th class="text-end p-3">Total :
-                    </th>
-                    <th>{{ order.total|number_format(2,',',' ') }} €</th>
-                </tfoot>
-            </table>
-    </div>
 
-        <div class=" col-12 col-lg-5 text-center col-md-12 text-md-center bg-light rounded border border-1">
-            <h2 class="text-secondary text-center p-2"> Info </h2>
-            <p class="fs-5 fw-normal">Client : {{ order.user.name}} </p>
-            <p class="fs-5 fw-normal">Email :{{ order.email}}</p>
-            <p class="fs-5 fw-normal">Ref : {{ order.reference}} </p>
-            <p class="fs-5 fw-normal">Adresse de livraison : {{ order.adressLivraison[0].line1 ~","~ order.adressLivraison[0].postal_code}}</p>
-            {% if order.adressLivraison[0].line2 %} <p> Complément Adresse : {{ order.adressLivraison[0].line2}} {% endif %}
-            <p class="fs-5 fw-normal">Etat Livraison : {{ order.stateSending}} <p/>
-            <hr/>
-            <p class="fs-4 fw-normal text-center text-secondary">
-                Changer l'etat de votre Livraison
-            </p>
-            <div class="w-75 m-auto ">
-                {{ form_start(form)}}
-                {{ form_row(form.stateSending, {'label' : ' '})}}
-                <div class="d-flex justify-content-center">
-                <button type="submint" class="btn  btn-primary col-6 m-2 text-center"> Changer </button>
+
                 </div>
-                {{ form_end(form)}}
             </div>
         </div>
+        <div class="row d-flex justify-content-lg-around ">
 
-</div>
+            {# Panier #}
+            <div class=" col-12 col-lg-5 col-md-12 bg-light rounded border border-1">
+                <h2 class="text-secondary text-center p-2">Panier</h2>
+                    <table class="table fs-5 mt-5 text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">N°</th>
+                                <th scope="col">NomArticle</th>
+                                <th scope="col">Qté</th>
+                                <th scope="col">Prix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for panier in order.panier %}
+                            <tr>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ panier.article.nom}}</td>
+                                <td>{{ panier.qte}}</td>
+                                <td>{{ (panier.qte * panier.article.prix)|number_format(2,',',' ')}} €</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <th colspan="2"></th>
+                            <th class="text-end p-3">Total :
+                            </th>
+                            <th>{{ order.total|number_format(2,',',' ') }} €</th>
+                        </tfoot>
+                    </table>
+                
+            </div>
+                {# Action #}
+                <div class=" col-12 col-lg-5 text-center col-md-12 text-md-center bg-light rounded border border-1">
+                    <h2 class="text-secondary text-center p-2"> Info </h2>
+                    <p class="fs-5 fw-normal">Client : {{ order.user.name}} </p>
+                    <p class="fs-5 fw-normal">Email :{{ order.email}}</p>
+                    <p class="fs-5 fw-normal">Ref : {{ order.reference}} </p>
+                    <p class="fs-5 fw-normal">Adresse de livraison : {{ order.adressLivraison[0].line1 ~","~ order.adressLivraison[0].postal_code}}</p>
+                    {% if order.adressLivraison[0].line2 %} <p> Complément Adresse : {{ order.adressLivraison[0].line2}} {% endif %}
+                    <p class="fs-5 fw-normal">Etat Livraison : {{ order.stateSending}} <p/>
+                    <hr/>
+                    <p class="fs-4 fw-normal text-center text-secondary">
+                        Changer l'etat de votre Livraison
+                    </p>
+                    <div class="w-75 m-auto ">
+                        {{ form_start(form)}}
+                        {{ form_row(form.stateSending, {'label' : ' '})}}
+                        <div class="d-flex justify-content-center">
+                        <button {% if etat  %} disabled {% endif %} type="submint" class="btn  btn-primary col-6 m-2 text-center"> Changer </button>
+                        </div>
+                        {{ form_end(form)}}
+                    </div>
+                </div>
+
+        </div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Message;
 use App\Entity\Order;
 use Doctrine\Persistence\ManagerRegistry;
@@ -41,20 +42,26 @@ class AdminController extends AbstractController
     public function orderUpdate(Order $order, Request $request, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
-
+        $articles = $doctrine->getRepository(Article::class)->findAll();
         $form = $this->createFormBuilder($order)
             ->add('stateSending', ChoiceType::class, [
             'choices'  => [
-                'En Cours Traitement' => 'En Cours Traitement',
                 'En Cours Livraisson' => 'En Cours Livraisson',
                 'Déjà Livré' => 'Déjà Livré'
             ],
             ])
             ->getForm();
-
+        
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            foreach ($order->getPanier() as  $value) {
+                $article = $doctrine->getRepository(Article::class)->find($value['article']->getId());
+                $article->setQte($article->getQte() - $value['qte']);
+                $em->persist($article);
+                $em->flush();
+            }
             $order->setState(true);
             $em->persist($order);
             $em->flush();
@@ -65,7 +72,8 @@ class AdminController extends AbstractController
         }
         return $this->render('admin/order_update.html.twig', [
             'order' => $order,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'articles' => $articles
         ]);
     }
 
