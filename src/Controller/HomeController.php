@@ -15,10 +15,12 @@ class HomeController extends AbstractController
     public function index(ArticleRepository $article, SessionInterface $session): Response
     {
         $articles = array_reverse($article->findBy(['type' => 'Article'],[],6));
+        $tools = array_reverse($article->findBy(['type' => 'Accessoire'],[],6));
         
         $panier = $session->get('panier',[]);
         return $this->render('home/index.html.twig', [
             'articles' => $articles,
+            'tools' => $tools,
             'panier' => $panier
         ]);
     }
