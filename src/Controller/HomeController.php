@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,26 +40,45 @@ class HomeController extends AbstractController
         return $this->render('home/store.html.twig', [
             'nav' => 'store',
             'articles' => $articleActuel,
-            'isPagination' =>  true,
+            'isPagination' =>  $nbArticles > 6 ? true : false,
             'nbPage' => $nbPage,
             'page' => $page,
             'nb' => $nb
         ]);
     }
 
-    #[Route('/tools', name: 'tools')]
-    public function tools(): Response
+    #[Route('/tools/{page?1}/{nb?6}', name: 'tools')]
+    public function tools(ArticleRepository $article, $page, $nb): Response
     {
+        $articles = $article->findBy(['type' => 'Accessoire']);
+        //$articleActuel = $article->findByPage('Article',$nb,($page - 1) * $nb,$prix);
+        $articleActuel = $article->findBy(['type' => 'Accessoire'], [], $nb, ($page - 1) * $nb);
+        $nbArticles = count($articles);
+        $nbPage = ceil($nbArticles / $nb);
+       
         return $this->render('home/tools.html.twig', [
-            'nav' => 'tools'
+            'nav' => 'tools',
+            'articles' => $articleActuel,
+            'isPagination' =>  $nbArticles > 6 ? true : false,
+            'nbPage' => $nbPage,
+            'page' => $page,
+            'nb' => $nb
         ]);
     }
 
     #[Route('/contact', name: 'contact')]
     public function contact(): Response
     {
+        $form = $this->createFormBuilder()
+            ->add('name', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('object', TextType::class)
+            ->add('message', TextareaType::class)
+            ->getForm();
+        
         return $this->render('home/contact.html.twig', [
-            'nav' => 'contact'
+            'nav' => 'contact',
+            'form' => $form->createView()
         ]);
     }
 

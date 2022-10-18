@@ -116,7 +116,7 @@
 									<div class="card-body">
 
 											<div class="infos">
-												<p class="card-title">{{ tool.nom }}</p>
+												<p style="font-size:1em" class="card-title">{{ tool.nom|slice(0,5)~'...' }}</p>
 												<p class="card-text">Prix : {{ tool.prix}} €</p>
 											</div>
 											<div class="info">

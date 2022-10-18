@@ -10,6 +10,76 @@
 <section>
 	<h2>ACCESSOIRES</h2>
 </section>
+<section>
+
+
+	<article class="row col-lg-10 col-md-10 col-12 m-auto mt-4 mb-4 d-flex justify-content-center  p-lg-5">
+		{% for article in articles %}
+			<div class="col-10 col-lg-4  col-md-6 col-sm-6 mt-3 m-auto">
+
+				<div class="card">
+					<img src="{{ asset('/uploads/article/' ~ article.image|default('default/Drone_C1.jpg'))}}" height="200" style="object-fit:cover;" class="card-img-top" alt="Drone">
+					<div class="card-body">
+
+						<div class="p-2 fs-4 d-flex justify-content-evenly">
+							<p class="card-title">{{ article.nom }}</p>
+							<p class="card-text">Prix :
+								{{ article.prix}}
+								€</p>
+						</div>
+						<div class="info">
+							{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte  or article.qte <= 0 %}
+								<p class="text-danger text-center fw-semibold ">EN RUPTURE DE STOCK</p>
+							{% endif %}
+						</div>
+						<div class="p-2 d-flex justify-content-evenly">
+							<a class="
+																				{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
+																				isDisabled
+																				{% endif %}
+																				btn btn-success" href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;">
+								Ajouter
+							</a>
+
+
+							<a href="{{ path('article',{id : article.id})}}" class="btn btn-primary" style=" text-shadow:none;">
+								Voir
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</article>
+
+
+</section>
+{% if isPagination %}
+	<aside class="d-flex justify-content-center p-3">
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				{% if page != 1%}
+					<li class="page-item">
+						<a class="page-link" href="{{ path('tools',{page : page - 1, nb: nb})}}">&laquo;</a>
+					</li>
+				{% endif %}
+				{% for i in range(1,nbPage) %}
+					<li class="page-item">
+						<a class="page-link" href="{{ path('tools',{page : i, nb: nb})}}">
+							{{i}}
+						</a>
+					</li>
+				{% endfor %}
+				{% if page != nbPage %}
+					<li class="page-item">
+						<a class="page-link" href="{{ path('tools',{page : page + 1, nb: nb})}}">&raquo;</a>
+					</li>
+				{% endif %}
+			</ul>
+		</nav>
+	{% endif %}
+</aside>
 
 {% endblock %}
 
