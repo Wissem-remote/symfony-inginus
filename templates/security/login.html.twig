@@ -22,12 +22,12 @@
                     </div>
                 {% endif %}
 
-                <h2 class="h3 mb-3 font-weight-normal">CONNECTER VOUS </h2>
+                <h2 class="h3 mb-3 font-weight-normal">CONNECTEZ VOUS </h2>
                 <span>avec vos informations</span>
                 {# <label for="inputEmail" class="m-2">Email</label> #}
                 <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mt-5" autocomplete="email" required autofocus>
                 {# <label for="inputPassword" class="m-2">Password</label> #}
-                <input placeholder="Password" type="password" name="password" id="inputPassword" class="form-control mt-4" autocomplete="current-password" required>
+                <input placeholder="Mot de Passe" type="password" name="password" id="inputPassword" class="form-control mt-4" autocomplete="current-password" required>
 
 
                 <input  type="hidden" name="_csrf_token"
@@ -46,7 +46,7 @@
                 #}
 
                 <button class="btn btn-lg  mt-5 " type="submit">
-                    Se connnecter
+                    Se connecter
                 </button>
             </form>
         </div>

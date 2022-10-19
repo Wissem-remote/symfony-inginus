@@ -10,7 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Stripe\StripeClient;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class PayController extends AbstractController
@@ -68,7 +70,7 @@ class PayController extends AbstractController
     }
 
     #[Route('cart/pay/success', name: 'success_url')]
-    public function paySuccess(Request $request, $stripeSk, ManagerRegistry $doctrine): Response
+    public function paySuccess(Request $request, $stripeSk, ManagerRegistry $doctrine,MailerInterface $mailer): Response
     {
         // j'initialise ma session
         $session = $request->getSession();
@@ -122,8 +124,21 @@ class PayController extends AbstractController
         $order = new Order;
 
         $em = $doctrine->getManager();
+        // on envoie un email pour la facturatio 
+        
+        $email = (new TemplatedEmail())
+            ->from('inginus76@gmail.com')
+            ->to($emailLivraison)
+            ->htmlTemplate('mail/facture.html.twig')
+            ->context([
+                'adressLivraison' =>  $adressLivraison,
+                'name' => $this->getUser()->getName(),
+                'paniers' => $paniers,
+                'total' => $total
+            ]);
 
-
+        $mailer->send($email);
+        
         $order->setPanier($paniers)
             ->setReference($reference)
             ->setTotal($total[0])

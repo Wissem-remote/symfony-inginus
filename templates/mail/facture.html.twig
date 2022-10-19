@@ -1,0 +1,33 @@
+<h1> Bonjour {{ name }}</h2>
+    <p class="fw-semibold"> Votrre commande à bien été prix en chager </p>
+    <h2> Adresse Livrasson </p>
+    <p><span class="fw-normal">Adresse : </span> {{ adressLivraison['line1'] }} </p>
+    {% if adressLivraison['line2']%}<p><span class="fw-normal"> Complément : </span> {{ adressLivraison['line2']}}</p>{% endif %}
+    <p><span class="fw-normal">Ville : </span> {{adressLivraison['city']}} </p>
+    <p><span class="fw-normal">Code Postal : </span>{{ adressLivraison['postal_code']}}</p>
+        <table class="table" style="  border: 1px solid #333;" >
+            <thead>
+                <tr style=" border: 1px solid #333;">
+                    <th scope="col">Num</th>
+                    <th scope="col">Nom Article</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for panier in paniers %}
+                <tr>
+                    <th style=" border: 1px solid #333;"scope="row">  {{ loop.index }}</th>
+                    <td style=" border: 1px solid #333;">{{ panier.article.nom}}</td>
+                    <td style=" border: 1px solid #333;">{{ panier.qte }}</td>
+                    <td style=" border: 1px solid #333;">{{ (panier.qte * panier.article.prix)|number_format(2,',',' ') }} €</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot style=" border: 1px solid #333;">
+                <tr>
+                <th col="3" style=" text-align:right">total</th>
+                <th >{{ total['0']|number_format(2,',',' ') }} €</th>
+                </tr>
+            </tfoot>
+        </table>

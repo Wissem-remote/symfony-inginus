@@ -37,9 +37,14 @@
                 <i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
             </a>
             <div class="list-group drop">
-                <a href="{{ path('app_login') }}" class="list-group-item list-group-item-action">Connnect Vous !</a>
-                <a href="{{ path('app_register')}}" class="list-group-item list-group-item-action ">Inscritption</a>
-
+                {% if app.user %}
+                    <a href="{{ path('profile') }}" class=" list-group-item text-center list-group-item-action">Mon Compte</a>
+                    <a href="{{ path('logout')}}" class="list-group-item text-center list-group-item-action ">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class=" list-group-item text-center list-group-item-action">Connectez-vous !
+                    </a>
+                    <a href="{{ path('app_register')}}" class="list-group-item text-center list-group-item-action ">Inscription</a>
+                {% endif %}
             </div>
 
             <a href="{{ path('cart')}}">
@@ -61,7 +66,7 @@
         </div>
         <nav class="links">
 
-            <a class=" {%if nav is defined and nav == 'acceuil'%}active {% endif%}"  href="{{ path('home') }}">ACCEUIL</a>
+            <a class=" {%if nav is defined and nav == 'acceuil'%}active {% endif%}"  href="{{ path('home') }}">ACCUEIL</a>
 
             <a class=" {%if nav is defined and nav == 'store'%}active {% endif%}" href="{{ path('store') }}">BOUTIQUE</a>
 
@@ -74,9 +79,13 @@
                     <i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
                 </a>
                 <div class="list-group drop z" style=" z-index: 1;">
-                    <a href="{{ path('app_login') }}" class="list-group-item list-group-item-action">Connnect Vous !</a>
-                    <a href="{{ path('app_register')}}" class="list-group-item list-group-item-action ">Inscritption</a>
-
+                {% if app.user %}
+                     <a href="{{ path('profile') }}" class=" list-group-item text-center list-group-item-action">Mon Compte</a>
+                    <a href="{{ path('logout')}}" class=" list-group-item text-center list-group-item-action ">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class=" list-group-item text-center list-group-item-action">Connectez-vous ! </a>
+                    <a href="{{ path('app_register')}}" class="list-group-item text-center list-group-item-action ">Inscription</a>
+                {% endif %}
                 </div>
 
                 <a  href="{{ path('cart')}}">
@@ -104,7 +113,7 @@
 		<a href="#">CONDITIONS D'UTILISATION</a>
 	</aside>
 
-	<p class="text-center">© 2023 par INGINIUS. Créé par REZKI WISSEM</p>
+	<p class="text-center">© 2022 par INGINIUS. Créé par REZKI WISSEM, Image de Pexels & Pixabay</p>
 </footer>
 
         

@@ -4,30 +4,41 @@
 {% endblock %}
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{asset('css/contact/style.css')}}">
+	<link rel="stylesheet" href="{{asset('css/contact/style_media_tablette.css')}}">
 	
 {% endblock %}
 
 {% block body %}
     <section>
         <h2>
-        Contact Us
+        Contact
         </h2>
     </section>
-    <section style="background:  url({{ asset('img/bateaux_contact.jpg')}}) fixed no-repeat; background-size: cover;">
+<section style="background:  url({{ asset('img/island.jpg')}}) fixed no-repeat; background-size: cover;">
 
         <div class="w-75">
-            <h2 class="h3 text-center ">Contact Us</h2>
-            <div class="row">
-                <div class="col-6">
+            {% for message in  app.flashes('message_success') %}
+                <div class="alert alert-primary alert-dismissible primary fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+
+            <h2 class="h3 text-center fw-semibold mt-3 t ">Contactez-nous</h2>
             {{form_start(form)}}
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
                     {{ form_row(form.name,{ 'label' : ' ', 'attr' :{'placeholder': 'Nom'}}) }}
                     {{ form_row(form.email,{ 'label' : ' ', 'attr' :{'placeholder': 'Email'}}) }}
-                    {{ form_row(form.object,{ 'label' : ' ', 'attr' :{'placeholder': 'Object'}}) }}
+                    {{ form_row(form.object,{ 'label' : ' ', 'attr' :{'placeholder': 'Objet'}}) }}
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6 col-lg-6">
                     {{ form_row(form.message,{ 'label' : ' ', 'attr' :{'placeholder': 'Message','rows' : '8'}})}}
-            {{form_end(form)}}
                 </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <button class="btn col-10 col-md-6 col-lg-4 mb-4" type="submit"> Envoyer </button>
+                </div>
+            {{form_end(form)}}
             </div>
         </div>
     </section>

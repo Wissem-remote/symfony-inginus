@@ -4,13 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
 
 class HomeController extends AbstractController
 {
@@ -67,7 +70,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/contact', name: 'contact')]
-    public function contact(): Response
+    public function contact(MailerInterface $mailer, Request $request): Response
     {
         $form = $this->createFormBuilder()
             ->add('name', TextType::class)
@@ -75,7 +78,30 @@ class HomeController extends AbstractController
             ->add('object', TextType::class)
             ->add('message', TextareaType::class)
             ->getForm();
+
+        $form->handleRequest($request);
         
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data =$form->getData();
+            $email = (new TemplatedEmail())
+                ->from($data['email'])
+                ->to('inginus76@gmail.com')
+                ->htmlTemplate('mail/contact.html.twig')
+                ->context([
+                'name' => $data['name'],
+                'mail' => $data['email'],
+                'objet' => $data['object'],
+                'message' => $data['message']
+                ]);
+
+            $mailer->send($email);
+            
+
+            $this->addFlash('message_success','Votre Message à été envoyer');
+
+            return $this->redirect($request->getUri());
+        }
+
         return $this->render('home/contact.html.twig', [
             'nav' => 'contact',
             'form' => $form->createView()

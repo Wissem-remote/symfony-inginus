@@ -58,7 +58,7 @@
                 
                     <div class="row d-flex justify-content-lg-between justify-content-md-between ">
                         {# Adress de livraisson #}
-                        <div class="col-12 col-lg-3 col-md-4">
+                        <div class="col-12 col-lg-4 col-md-4">
                             <p class="fw-bold">Votre Adresses de Livraison </p>
                             <p><span class="fw-semibold">Adresse :</span> {{ adressLivraison['line1'] }} </p>
                             {% if adressLivraison['line2']%}<p><span class="fw-semibold"> Complément : </span> {{ adressLivraison['line2']}}</p>{% endif %}
@@ -66,7 +66,7 @@
                             <p><span class="fw-semibold">Code Postal :</span>{{ adressLivraison['postal_code']}}</p>
                         </div>
                         {# Adress de Facturation #}
-                        <div class="col-12 col-lg-3 col-md-4">
+                        <div class="col-12 col-lg-4 col-md-4">
                             <p class="fw-bold">Votre Adresses de Facturation </p>
                             <p><span class="fw-semibold">Adresse :</span> {{ adressDetail['line1'] }} </p>
                             {% if adressDetail['line2']%}<p><span class="fw-semibold"> Complément : </span> {{ adressDetail['line2']}}</p>{% endif %}

@@ -7,11 +7,13 @@ use App\Entity\Order;
 use App\Entity\User;
 use App\Form\MessageType;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -43,7 +45,7 @@ class ProfileController extends AbstractController
         ]);
     }
     #[Route('/profile/order/message/{id}', name: 'profile_order_message')]
-    public function orderMessage(Order $order, Request $request, ManagerRegistry $doctrine): Response
+    public function orderMessage(Order $order, Request $request, ManagerRegistry $doctrine, MailerInterface $mailer): Response
     {
         $message = new Message;
         // on créer notre formulaire
@@ -56,7 +58,19 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // je recupere le contenue de mon formulaire ['objet'] et ['message']
             $data = $form->getData();
-            
+
+            // on envoie un email pour confirmer l'envoie message
+            $email = (new TemplatedEmail())
+            ->from('inginus76@gmail.com')
+                ->to($this->getUser()->getEmail())
+                ->htmlTemplate('mail/message.html.twig')
+                ->context([
+                    'name' => $this->getUser()->getName(),
+                    'objet' => $data['objet'],
+                    'message' =>  $data['message']
+                ]);
+
+            $mailer->send($email);
             // on ajoute nos information dans notre objet
             $message->setCreatedAt(new \DateTimeImmutable);
             $message->setUser($this->getUser());
@@ -85,7 +99,7 @@ class ProfileController extends AbstractController
     public function message(ManagerRegistry $doctrine): Response
     {
         $messages = $doctrine->getRepository(Message::class)->findBy(['user' => $this->getUser()]);
-
+        dump($messages);
         return $this->render('profile/message.html.twig', [
             'messages' => array_reverse($messages),
         ]);

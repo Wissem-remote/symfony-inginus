@@ -31,8 +31,8 @@
                                                 </div>
                                                 <div class=" col-md-6 col-lg-10  ">
                                                     <div class="row mt-3">
-                                                            <div  class=" col-lg-4 col-12 col-md-12 fw-semibold  text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Nom Article : <span class=" ps-2 fw-normal">{{ panier.article.nom }} </span> </div>
-                                                            <div class="col-lg-3 col-12 col-md-12 fw-semibold text-center p-2 text-md-center text-lg-start d-flex justify-content-center align-items-md-center align-items-lg-center">Quantité : <span class=" ps-2 fw-normal"> {{ panier.qte }}</span></div>
+                                                            <div  class=" col-lg-4 col-12 col-md-12 fw-semibold  text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Article : <span class=" ps-2 fw-normal">{{ panier.article.nom }} </span> </div>
+                                                            <div class="col-lg-3 col-12 col-md-12 fw-semibold text-center p-2 text-md-center text-lg-start d-flex justify-content-center align-items-md-center align-items-lg-center">Quantité : <span class=" ps-2 fw-semibold"> {{ panier.qte }}</span></div>
                                                             <div class="col-lg-2 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">
                                                                         <div class="btn-group btn-sm">
                                                                         {# Button Moin #}
@@ -74,7 +74,7 @@
 
                                                                         </div>
                                                             </div>
-                                                                <div class="col-lg-3 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Prix : <span class="ps-2 fw-normal">{{ (panier.qte * panier.article.prix)|number_format(2,',',' ') }} €</span></div>
+                                                                <div class="col-lg-3 col-12 col-md-12  fw-semibold text-center text-md-center text-lg-start p-2 d-flex justify-content-center align-items-md-center align-items-lg-center">Prix : <span class="ps-2 fw-normal  fw-semibold">{{ (panier.qte * panier.article.prix)|number_format(2,',',' ') }} €</span></div>
                                                         </div>
                                                 </div>
                                             {# row #}
@@ -89,7 +89,7 @@
                 <div class="col-lg-4 col-md-12 col-12">
                     <div class="list-group">
                     <li class="list-group-item list-group-item-info border-0 text-center fw-light fs-5"> Sommaire de Votre Commande</li>
-                    <li class="list-group-item text-center p-5 fs-4">Total net : {{ app.session.get('total')[0]|number_format(2,',',' ') }} €</li>
+                    <li class="list-group-item text-center p-5 fs-4   fw-semibold">Total net : {{ app.session.get('total')[0]|number_format(2,',',' ') }} €</li>
 
                     
                     {% if app.user is not empty%}

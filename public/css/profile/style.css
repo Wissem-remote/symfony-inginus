@@ -37,9 +37,14 @@ h1 span{
     background:turquoise;
     border-radius: 0.375rem 0.375rem 0px 0px;
 }
-
+.skill{
+    font-size: 3em;
+}
 @media screen and (max-width: 840px){
     .panier{
         width: 100%!important;
+    }
+    .skils{
+        margin-right: 10%;
     }
 }

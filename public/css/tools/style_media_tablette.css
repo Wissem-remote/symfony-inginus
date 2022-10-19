@@ -1,0 +1,8 @@
+@media screen and (max-width: 900px){
+    section:nth-child(1){
+    height: 20vh;
+    }
+    section:nth-child(1) h2{
+    font-size: 10vh;
+    }
+}
