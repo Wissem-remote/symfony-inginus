@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class HomeController extends AbstractController
 {
@@ -74,7 +75,14 @@ class HomeController extends AbstractController
     {
         $form = $this->createFormBuilder()
             ->add('name', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class,[
+            'constraints' => [
+                new Regex([
+                    'pattern' => '/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/',
+                    'message' => "Votre Email est invalide ",
+                ])
+                ],
+                ])
             ->add('object', TextType::class)
             ->add('message', TextareaType::class)
             ->getForm();

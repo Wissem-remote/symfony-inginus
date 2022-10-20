@@ -43,3 +43,9 @@ span{
     color: white;
     
 }
+
+@media screen and (max-width: 920px){
+    section:nth-child(1){
+        min-height: 70vh;
+    }
+}

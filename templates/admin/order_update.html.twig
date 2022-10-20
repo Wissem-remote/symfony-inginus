@@ -16,7 +16,7 @@
                             <div class="col-2 rounded border border-1 m-2 {% if article.qte <= 1 %} border-danger {% else%} border-success {% endif %}">
                                 <div class="row d-flex align-items-center">
                                     <div class="col-6 p-2">
-                                    <img class="figure-img img-fluid rounded" style="object)fit:cover;" src="{{ asset('uploads/article/'~ article.image)}}" alt="{{panier.article.nom}}"/>
+                                    <img class="figure-img img-fluid rounded" style="object)fit:cover;" src="{{ asset('uploads/article/'~ article.image|default('default/Drone_C1.jpg'))}}" alt="{{panier.article.nom}}"/>
                                     </div>
 
                                     <div class=" text-center col-6 p-2 {% if article.qte <= 1 %}text-danger {% else%} text-success {% endif %}">

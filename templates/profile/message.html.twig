@@ -5,17 +5,20 @@
 
 {% block body %}
 	<section>
-		<h2 class="text-center text-lg-end fs-1 mb-4 me-4">
+<h2 class="text-center text-lg-end fs-1 mb-4 me-4 reveal">
+
 			<i class="bi bi-chat"></i>
 			Mes Messages
 		</h2>
 	</br>
-</br></br>
+    </br>
+    </br>
+    {% if messages|length >=1 %}
         <hr class=" w-75 m-auto border border-secondary border-1 mb-3 opacity-75 ">
             <div class="w-75 m-auto rounded tab p-4">
                 <p class="fs-5  fw-semibold "> Vos Commandes </p>
                         {% for message in messages %}
-                            <aside class="w-100 m-auto rounded tabs mb-3">
+                            <aside class="reveal w-100 m-auto rounded tabs mb-3">
                                 <div class="tabs-top"></div>
                                     <div class="row p-3">
                                     <div class="col-lg-6 col-md-6 col-12 fw-semibold text-center text-md-start text-lg-start p-2">Objet : 	{{message.objet}}</div>
@@ -26,7 +29,14 @@
                             </aside>
                         {% endfor %}
             </div>
+            {% else %}
+		<div class="w-75 m-auto">
+			<p class="fs-4 text-center"> Vous n'avez pas de message pour le moment !
+			</p>
+		</div>
+		{% endif %}
 
     
-</section>{% endblock %}
+</section>
+{% endblock %}
 

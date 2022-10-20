@@ -1,12 +1,10 @@
 section:nth-child(1){
     background-size: cover;
     height: 73vh;
-    transition: 1s;
 }
 
 
 section:nth-child(1) h2{
-    transition: 1s;
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.26);
     padding-top:37vh;
     padding-right: 2vw;
@@ -14,13 +12,12 @@ section:nth-child(1) h2{
     text-align:end;
     font-size: 7.2vw;
     font-weight: 400;
-    animation: linear move 2s;
+    /* animation: linear move 2s; */
 }
 section:nth-child(2){
     height: 55vh;
     background: #ddd;
     display: flex;
-    transition: 1s;
 }
 section:nth-child(2) article:nth-child(1){
     width:50vw;
@@ -37,7 +34,7 @@ section:nth-child(2) article:nth-child(1)  p{
     text-align:start;
     font-size: 5.2vw;
     font-weight: 400;
-    animation: linear move 2s;
+    /* animation: linear move 2s; */
 }
 section:nth-child(2) article:nth-child(1)  a {
     position: relative;
@@ -51,7 +48,7 @@ section:nth-child(2) article:nth-child(1)  a {
     border-radius: 30px;
     cursor: pointer;
     text-decoration: none;
-    animation: linear move 2s;
+    /* animation: linear move 2s; */
 }
 section:nth-child(2) article:nth-child(1)  a:hover{
     color:#1B57A6;
@@ -66,8 +63,8 @@ section:nth-child(2) article:nth-child(2) p {
     text-align:start;
     font-size: 5.2vw;
     font-weight: 500;
-    animation: linear move 2s;
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.26);
+    /* animation: linear move 2s; */
 }
 
 section:nth-child(3){
@@ -81,7 +78,7 @@ section:nth-child(3) h2{
     font-size: 4.9vw;
     color: white;
     padding: 1em;
-    animation: linear move 2s;
+    /* animation: linear move 2s; */
 }
 section:nth-child(3) h2 span{
     color:#1B57A6 ;
@@ -108,4 +105,13 @@ section:nth-child(3) h2 span{
 .isDisabled {
     cursor: not-allowed;
     opacity: 0.5;
+}
+.reveal{
+    opacity: 0;
+    transform: translateY(-30px);
+}
+.reveal-visible{
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 2s cubic-bezier(.5, 0, 0, 1);
 }

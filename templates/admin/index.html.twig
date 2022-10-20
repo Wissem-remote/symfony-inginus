@@ -5,7 +5,7 @@
 {% block body %}
 
 <h1 class="p-2">
-	Bienvenue
+	Bienvenue, vos {{ info }}
 </h1>
 
 {% for message in  app.flashes('success_add') %}
@@ -49,7 +49,7 @@
 </a>
 <a href="{{path('admin_messager')}}" class="btn btn-warning m-2">
 	Message
-<span class="badge text-bg-white">{% if notificationSend|length >= 1  %} {{ notificationSend|length }}{% endif %}</span>
+<span class="badge text-bg-secondary">{% if notificationSend|length >= 1  %} {{ notificationSend|length }}{% endif %}</span>
 </a>
 
 

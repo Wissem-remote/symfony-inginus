@@ -10,7 +10,7 @@
 <section style="background:  url({{ asset('img/ciel_login.jpg')}}) fixed no-repeat; background-size: cover;">
 
 
-        <div class="w-50 ">
+        <div class="col-10 col-md-8 col-lg-6 m-auto ">
             <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -44,10 +44,11 @@
                         </label>
                     </div>
                 #}
-
-                <button class="btn btn-lg  mt-5 " type="submit">
-                    Se connecter
-                </button>
+                 <div class="d-flex justify-content-center justify-content-md-center justify-content-lg-start">
+                    <button class="col-10 col-md-6 col-lg-3 btn btn-lg  mt-5 " type="submit">
+                        Se connecter
+                    </button>
+                </div>
             </form>
         </div>
 </section>

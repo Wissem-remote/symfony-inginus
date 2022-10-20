@@ -115,5 +115,8 @@ footer p{
     font-weight: 400;
     font-size:100%;
 }
-
+.register{
+    left: 10%;
+    z-index: 2;
+}
 }

@@ -13,5 +13,5 @@ section:nth-child(1) h2{
     font-size: 25vh;
     font-style: italic;
     text-shadow: 0 3px 0 rgba(0, 0, 0, 0.26);
-    animation:linear move 2s;
+    animation: move 2s cubic-bezier(.5, 0, 0, 1);
 }

@@ -5,7 +5,7 @@
 
 {% block body %}
 	<section>
-		<h2 class=" text-center text-lg-end fs-1 mb-4 me-4">
+		<h2 class=" text-center text-lg-end fs-1 mb-4 me-4 reveal">
 			<i class="bi bi-person-circle"></i>
 			Profile
 		</h2>
@@ -28,11 +28,12 @@
 
 
 		<hr class="border border-secondary border-1 mt-3 opacity-75">
-		<div class="m-auto w-75">
-		<p class="fs-4 fw-semibold">Changer Votre mot-passe </p>
+		<div class="m-auto col-7">
+		<p class="fs-4 fw-semibold ">Changer Votre mot de passe </p>
 		{{ form_start(form)}}
-		{{ form_row(form.oldPassword,{'label' : 'Votre Ancien Password'})}}
-		{{ form_row(form.newPassword,{'label' : 'Votre Nouveaux Password'})}}
+		{{ form_row(form.oldPassword,{'label' : 'Votre Ancien Mot de Passe' ,'attr' :{'placeholder': 'Votre ancien mot de passe'}})}}
+{{ form_row(form.newPassword,{'label' : 'Votre Nouveaux Mot de Passe' ,'attr' :{'placeholder': 'Votre nouveaux mot de passe','class' : 'input'}})}}
+
 		<button class="btn btn-primary" type="submit"> Changer </button>
 		{{ form_end(form)}}
 		</div>
@@ -40,3 +41,8 @@
 
 	</section>
 {% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('js/app_input.js')}}"></script>
+{% endblock %}
+

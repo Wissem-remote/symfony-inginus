@@ -32,10 +32,10 @@ class RegistrationController extends AbstractController
                 )
             );
             $data = $form->getData();
-            
+            //dd($data->getEmail());
             $email = (new TemplatedEmail())
                 ->from('inginus76@gmail.com')
-                ->to($data->getEmail())
+                ->to('example@live.fr')
                 ->htmlTemplate('mail/register.html.twig')
                 ->context([
                     'data' => $data
@@ -48,7 +48,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
+            $this->addFlash('success_register', 'vous venez de vous inscrire, un mail vous sera envoyer prochainement');
             return $this->redirectToRoute('home');
         }
 

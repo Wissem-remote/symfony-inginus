@@ -40,6 +40,17 @@ h1 span{
 .skill{
     font-size: 3em;
 }
+
+.reveal{
+    opacity: 0;
+    transform: translateY(-30px);
+}
+.reveal-visible{
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 2s cubic-bezier(.5, 0, 0, 1);
+}
+
 @media screen and (max-width: 840px){
     .panier{
         width: 100%!important;

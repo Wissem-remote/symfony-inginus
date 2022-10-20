@@ -1,5 +1,3 @@
-
-
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".links");
 const links = document.querySelectorAll(".links a");

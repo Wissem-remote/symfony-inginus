@@ -134,14 +134,27 @@ footer p{
     cursor: not-allowed;
     opacity: 0.5;
 }
-
+.register{
+    transition: 2s;
+    opacity: 0;
+    transform: translateY(-30px);
+    visibility: hidden;
+    left:25%;
+}
+.registerShow{
+    visibility:visible;
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 2s cubic-bezier(.5, 0, 0, 1);
+}
 @keyframes move{
     from{
-        transform: translateY(20px);
+        transform: translateY(-30px);
         opacity: 0;
     }
     to{
         transform: translateY(0px);
+        opacity: 1;
     }
 }
 @keyframes fadein{

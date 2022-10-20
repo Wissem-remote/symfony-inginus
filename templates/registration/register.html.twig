@@ -9,21 +9,30 @@
 <section style="background:  url({{ asset('img/ciel_login.jpg')}}) fixed no-repeat; background-size: cover;">
 
 
-<div class="w-50">
+<div class="col-10 col-md-8 col-lg-6">
     <h2 class="h3">Inscrivez-vous !</h2>
 
 
     {{ form_start(registrationForm) }}
     {{ form_row(registrationForm.name,{ 'label' : ' ', 'attr' :{'placeholder': 'Votre Nom'}}) }}
-    {{ form_row(registrationForm.email,{ 'label' : ' ', 'attr' :{'placeholder': 'Votre Email'} }) }}
+    {{ form_row(registrationForm.email,{ 'label' : ' ', 'attr' :{'placeholder': 'Votre Email','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'} }) }}
+
     {{ form_row(registrationForm.plainPassword, {
-        label: ' ', 'attr' :{'placeholder': 'Votre Mot de Passe'}
+        label: ' ', 'attr' :{'placeholder': 'Votre Mot de Passe','class' : 'input'}
     }) }}
-    {{ form_row(registrationForm.agreeTerms,{ label:" J'accepte les termes et conditions utilisation"}) }}
+ 
+    {{ form_row(registrationForm.agreeTerms,{ label:" J'accepte les termes et conditions utilisation"} ) }}
 
+        <div class="d-flex justify-content-center justify-content-md-center justify-content-lg-start">
+        <button type="submit" class="col-10 col-md-6 col-lg-3 btn btn-lg">S'inscrire</button>
 
-        <button type="submit" class="btn btn-lg">S'inscrire</button>
+        </div>
     {{ form_end(registrationForm) }}
 </div>
     </section>
 {% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('js/app_input.js')}}"></script>
+{% endblock %}
+

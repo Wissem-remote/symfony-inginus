@@ -1,4 +1,7 @@
 @media screen and (max-width: 420px){
+    section:nth-child(1){
+        min-height: 90vh;
+    }
     .h3{
         font-size: 2.4rem;
     }

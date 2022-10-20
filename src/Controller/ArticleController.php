@@ -27,7 +27,8 @@ class ArticleController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'articles' => array_reverse($articles),
             'notificationSend' => $notificationSend,
-            'notificationOrder' => $notificationOrder
+            'notificationOrder' => $notificationOrder,
+            'info' => 'article'
         ]);
     }
 
@@ -41,7 +42,8 @@ class ArticleController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'articles' => array_reverse($articles),
             'notificationSend' => $notificationSend,
-            'notificationOrder' => $notificationOrder
+            'notificationOrder' => $notificationOrder,
+            'info' => 'accessoire'
         ]);
     }
 
@@ -154,7 +156,7 @@ class ArticleController extends AbstractController
             $em->persist($article);
             $em->flush();
             // do anything else you need here, like send an email
-            $this->addFlash('success_update', 'Votre Article à été modifier');
+            $this->addFlash('success_update', 'Votre Accessoire à été modifier');
 
             return $this->redirectToRoute('admin');
         }

@@ -42,3 +42,36 @@ label{
     text-shadow: 0 1px 0 rgb(0 0 0 / 35%);
     color: white;
 }
+.notValid{
+    visibility: hidden;
+    animation: show 2s reverse;
+}
+.valid{
+    visibility: visible;
+    animation: show 2s;
+}
+.form-control.is-invalid{
+    background:linear-gradient(0deg,#ffffff8f, #ffffffa6);
+}
+@media screen and (max-width: 920px){
+    section:nth-child(1){
+        min-height: 70vh;
+    }
+}
+
+
+@media screen and (max-width: 480px){
+    section:nth-child(1){
+        min-height: 100vh;
+    }
+}
+@keyframes show{
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

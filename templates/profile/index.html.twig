@@ -6,7 +6,8 @@
 
 
 <section>
-<h2 class="text-lg-end text-center fs-1    ">
+<h2 class="text-lg-end text-center fs-1   reveal ">
+
 	<i class="bi bi-speedometer2"></i>
 	DashBoard
 </h2>
@@ -24,13 +25,14 @@
 		</br>
 		</br>
 		</br>
+		{% if orders|length >= 1 %}
 		<hr class=" w-75 m-auto border border-secondary border-1 mb-3 opacity-75 ">
 		<div class="w-75 m-auto rounded tab p-4">
 			<p class="fs-5  fw-semibold "> Vos Commandes </p>
 
 					{% for order in orders %}
-						<aside class="w-100 m-auto rounded tabs mb-3">
-							<div class="tabs-top"></div>
+						<aside class="reveal w-100 m-auto rounded tabs mb-3">
+							<div class="tabs-top "></div>
 								<div class="row p-3">
 								<div class="col-lg-6 col-md-6 col-12 fw-semibold text-center text-md-start text-lg-start p-2">Ref : {{ order.reference }}</div>
 								<div class="col-lg-6 col-12 col-md-6  fw-semibold text-center text-md-end text-lg-end p-2">Prix Total : {{ order.total|number_format(2,',',' ')}} €</div>
@@ -40,6 +42,13 @@
 						</aside>
 					{% endfor %}
 		</div>
+		{% else %}
+		<div class="w-75 m-auto">
+			<p class="fs-4"> Vous n'avez pas de commandes pour le moment, pour commandes des article cliquer 
+			<a href="{{ path('home')}}" class="text-info fw-semibold"> Ici </a>
+			</p>
+		</div>
+		{% endif %}
 	
 </section>
 {% endblock %}
