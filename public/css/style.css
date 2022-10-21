@@ -115,10 +115,11 @@ footer aside{
 }
 footer aside a{
     text-decoration: none;
-    margin-right: 4vw;
+    padding: 2%;
     color: whitesmoke;
     font-size:large;
     font-weight: 400;
+  
 }
 footer aside a:hover{
     color: white;
