@@ -35,7 +35,7 @@ class RegistrationController extends AbstractController
             //dd($data->getEmail());
             $email = (new TemplatedEmail())
                 ->from('inginus76@gmail.com')
-                ->to('example@live.fr')
+                ->to($data->getEmail())
                 ->htmlTemplate('mail/register.html.twig')
                 ->context([
                     'data' => $data

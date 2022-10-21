@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link
+		rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+		{# Favicon  #}
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('asset/favicon/apple-touch-icon.png')}}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('asset/favicon/favicon-32x32.png')}}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('asset/favicon/favicon-16x16.png')}}">
+		<link rel="manifest" href="/site.webmanifest">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#2d89ef">
+		<meta
+		name="theme-color" content="#ffffff">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{# Lien CSS #}
+		{% endblock %}
+
+
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+				<div class="container-fluid  ">
+
+					<a class="navbar-brand" href="{{ path('admin')}}">INIGINUS</a>
+				</div>
+			</nav>
+
+		</header>
+		<main class="container mt-5 mb-5 "> {% block body %}{% endblock %}
+			</main>
+
+
+			{% block javascripts %}
+				{# Lien JS #}
+			{% endblock %}
+			<script src="{{asset('js/bootstrap.js')}}"></script>
+
+		</body>
+	</html>
+

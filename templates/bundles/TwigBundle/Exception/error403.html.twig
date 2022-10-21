@@ -1,0 +1,11 @@
+{% extends 'baseError.html.twig' %}
+
+{% block body %}
+	<h1 class="text-danger fw-semibold">Page Inconnue</h1>
+
+	<p>
+		Votre action n'a pas pu aboutir, veuillez vérifier l'URL passer
+		<a href="{{ path('home') }}">Retourner à l'accueil</a>.
+	</p>
+{% endblock %}
+

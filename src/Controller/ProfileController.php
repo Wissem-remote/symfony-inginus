@@ -16,6 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ProfileController extends AbstractController
 {
@@ -143,7 +145,21 @@ class ProfileController extends AbstractController
         dump($user);
         $form = $this->createFormBuilder()
                     ->add('oldPassword', PasswordType::class)
-                    ->add('newPassword', PasswordType::class)
+                    ->add('newPassword', PasswordType::class, [
+                                // instead of being set onto the object directly,
+                                // this is read and encoded in the controller
+                                'mapped' => false,
+                                'attr' => ['autocomplete' => 'new-password'],
+                                'constraints' => [
+                                    new NotBlank([
+                                        'message' => "S'il vous plait entrer votre mot passe.",
+                                    ]),
+                                    new Regex([
+                                        'pattern' => '/(?=[0-9a-zA-Z.*]+$)^(?=.*[A-Z])(?=.{6,}).*$/',
+                                        'message' => "Votre mot de passe doit contenir 6 caractères et une majuscule ",
+                                    ]),
+                                ],
+                            ])
                     ->getForm();
         
         $form->handleRequest($request);
