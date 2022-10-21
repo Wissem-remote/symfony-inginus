@@ -4,156 +4,161 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
-        {# Favicon  #}
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('asset/favicon/apple-touch-icon.png')}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('asset/favicon/favicon-32x32.png')}}">
-        <link rel="icon" type="image/png" sizes="16x16"  href="{{ asset('asset/favicon/favicon-16x16.png')}}">
-        {# <link rel="manifest" href="{{ asset('asset/favicon/site.webmanifest') }}"> #}
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileColor" content="#2d89ef">
-        <meta name="theme-color" content="#ffffff">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        <link rel="stylesheet" href="{{asset('css/style.css')}}">
-        <link rel="stylesheet" href="{{asset('css/style_media_tablette.css')}}">
-        <link rel="stylesheet" href="{{asset('css/style_media_mobile.css')}}">
-        <link rel="stylesheet" href="{{asset('css/style_media_mobile_xs.css')}}">
-        {% block stylesheets %}
-            {# Lien CSS #}
-        {% endblock %}
-
-        
-    </head>
-    <body>
-    
-        <header class="">
-        <a href="{{ path('home')}}" class="title text-decoration-none">
-            <img class="img" src="{{ asset('img/Logo-drone.png')}}" alt="logo"/>
-            <h1 class="ing">ING<span>INUS</span>
-            </h1>
-        </a>
-
-        <div class="bot">
-            
-            <a class="login" href="#">
-                <i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
-            </a>
-            <div class="list-group drop">
-                {% if app.user %}
-                    <a href="{{ path('profile') }}" class=" list-group-item text-center list-group-item-action">Mon Compte</a>
-                    <a href="{{ path('logout')}}" class="list-group-item text-center list-group-item-action ">Déconnexion</a>
-                {% else %}
-                    <a href="{{ path('app_login') }}" class=" list-group-item text-center list-group-item-action">Connectez-vous !
-                    </a>
-                    <a href="{{ path('app_register')}}" class="list-group-item text-center list-group-item-action ">Inscription</a>
-                {% endif %}
-            </div>
-
-            <a href="{{ path('cart')}}">
-                {% if app.session.get('panier')|length >= 1 %}
-                    <i class='bx bxs-cart-download' style='color:#42858C'></i>
-                {% else %}
-                    <i class='bx-md bx bx-cart' style='color:#2273BC; '></i>
-                {% endif %}
-            </a>
+		<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+		<link
+		rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+		{# Favicon  #}
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('asset/favicon/apple-touch-icon.png')}}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('asset/favicon/favicon-32x32.png')}}">
+		<link
+		rel="icon" type="image/png" sizes="16x16" href="{{ asset('asset/favicon/favicon-16x16.png')}}">
+		{# <link rel="manifest" href="{{ asset('asset/favicon/site.webmanifest') }}"> #}
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#2d89ef">
+		<meta
+		name="theme-color" content="#ffffff">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		<link rel="stylesheet" href="{{asset('css/style.css')}}">
+		<link rel="stylesheet" href="{{asset('css/style_media_tablette.css')}}">
+		<link rel="stylesheet" href="{{asset('css/style_media_mobile.css')}}">
+		<link rel="stylesheet" href="{{asset('css/style_media_mobile_xs.css')}}">
+		{% block stylesheets %}
+			{# Lien CSS #}
+		{% endblock %}
 
 
+	</head>
+	<body>
 
-        </div>
+		<header class="">
+			<a href="{{ path('home')}}" class="title text-decoration-none">
+				<img class="img" src="{{ asset('img/Logo-drone.png')}}" alt="logo"/>
+				<h1 class="ing">ING<span>INUS</span>
+				</h1>
+			</a>
 
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
-        <nav class="links">
+			<div class="bot">
 
-            <a class=" {%if nav is defined and nav == 'acceuil'%}active {% endif%}"  href="{{ path('home') }}">ACCUEIL</a>
+				<a class="login" href="#">
+					<i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
+				</a>
+				<div class="list-group drop">
+					{% if app.user %}
+						<a href="{{ path('profile') }}" class=" list-group-item text-center list-group-item-action">Mon Compte</a>
+						<a href="{{ path('logout')}}" class="list-group-item text-center list-group-item-action ">Déconnexion</a>
+					{% else %}
+						<a href="{{ path('app_login') }}" class=" list-group-item text-center list-group-item-action">Connectez-vous !
+						</a>
+						<a href="{{ path('app_register')}}" class="list-group-item text-center list-group-item-action ">Inscription</a>
+					{% endif %}
+				</div>
 
-            <a class=" {%if nav is defined and nav == 'store'%}active {% endif%}" href="{{ path('store') }}">BOUTIQUE</a>
+				<a href="{{ path('cart')}}">
+					{% if app.session.get('panier')|length >= 1 %}
+						<i class='bx bxs-cart-download' style='color:#42858C'></i>
+					{% else %}
+						<i class='bx-md bx bx-cart' style='color:#2273BC; '></i>
+					{% endif %}
+				</a>
 
-            <a class=" {%if nav is defined and nav == 'tools'%}active {% endif%}" href="{{ path('tools') }}">ACCESSOIRES</a>
 
-            <a class=" {%if nav is defined and nav == 'contact'%}active {% endif%}" href="{{ path('contact') }}">CONTACT</a>
+			</div>
 
-            <div class="icon">
-                <a class="login" href="#">
-                    <i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
-                </a>
-                <div class="list-group drop z" style=" z-index: 1;">
-                {% if app.user %}
-                     <a href="{{ path('profile') }}" class=" list-group-item text-center list-group-item-action">Mon Compte</a>
-                    <a href="{{ path('logout')}}" class=" list-group-item text-center list-group-item-action ">Déconnexion</a>
-                {% else %}
-                    <a href="{{ path('app_login') }}" class=" list-group-item text-center list-group-item-action">Connectez-vous ! </a>
-                    <a href="{{ path('app_register')}}" class="list-group-item text-center list-group-item-action ">Inscription</a>
-                {% endif %}
-                </div>
+			<div class="hamburger">
+				<div class="line"></div>
+				<div class="line"></div>
+				<div class="line"></div>
+			</div>
+			<nav class="links">
 
-                <a  href="{{ path('cart')}}">
-                    {% if app.session.get('panier')|length >= 1 %}
-                        <i class='bx bxs-cart-download' style='color:#42858C'></i>
-                    {% else %}
-                        <i class='bx-md bx bx-cart' style='color:#2273BC; '></i>
-                    {% endif %}
-                </a>
+				<a class=" {%if nav is defined and nav == 'acceuil'%}active {% endif%}" href="{{ path('home') }}">ACCUEIL</a>
 
-                
-            </div>
-        </nav>
-        {% for message in  app.flashes('success_register') %}
-        <div class="alert alert-info position-absolute top-0  mt-3 m-auto p-4 register col-12 col-md-10 col-lg-6 " role="alert">
-            <span class="fw-semibold"> Félicitation</span>, {{ message }}
-        </div>
-        {% endfor %}
-        </header>
-        <main id="swup"  class="transition-fade">
-                {% block body %}
-                
-                {% endblock %}
-        </main>
-<footer>
-	<aside >
-		<a href="#"  data-bs-toggle="modal" data-bs-target="#politique">MENTIONS LÉGALES</a>
-		{{ modal.mention('Mention')}}
-        <a href="#" data-bs-toggle="modal" data-bs-target="#cgv">CGV & CGU</a>
-        {{ modal_cgv.cgv('CGV & CGU')}}
-        <a href="#" data-bs-toggle="modal" data-bs-target="#pol">Politique de confidentialité</a>
-        {{ modal_pol.pol('Politique de confidentialité')}}
-	</aside>
+				<a class=" {%if nav is defined and nav == 'store'%}active {% endif%}" href="{{ path('store') }}">BOUTIQUE</a>
 
-	<p class="text-center">© 2022 par INGINIUS. Créé par REZKI WISSEM, Image de Pexels & Pixabay</p>
-</footer>
+				<a class=" {%if nav is defined and nav == 'tools'%}active {% endif%}" href="{{ path('tools') }}">ACCESSOIRES</a>
 
-        
-        <script>
-            window.axeptioSettings = {
-        clientId: "6352bec6c85472350196d292",
-        cookiesVersion: "inginus/-fr"
-        };
+				<a class=" {%if nav is defined and nav == 'contact'%}active {% endif%}" href="{{ path('contact') }}">CONTACT</a>
 
-        (function (d, s) {
-        var t = d.getElementsByTagName(s)[0],
-        e = d.createElement(s);
-        e.async = true;
-        e.src = "//static.axept.io/sdk-slim.js";
-        t.parentNode.insertBefore(e, t);
-        })(document, "script");
-        </script>
-        <script src="{{ asset('js/app.js')}}"></script>
-        <script src="{{ asset('js/bootstrap.js')}}"></script>
-        <script src="{{ asset('js/app_nav.js')}}"></script> 
-        <script src="{{ asset('js/app_api.js')}}"></script>
-        <script src="{{ asset('js/app_register.js')}}"></script>
-        {% block javascripts %}
-            {# Lien JS #}
-        {% endblock %}
-    </body>
-</html>
+				<div class="icon">
+					<a class="login" href="#">
+						<i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
+					</a>
+					<div class="list-group drop z" style=" z-index: 1;">
+						{% if app.user %}
+							<a href="{{ path('profile') }}" class=" list-group-item text-center list-group-item-action">Mon Compte</a>
+							<a href="{{ path('logout')}}" class=" list-group-item text-center list-group-item-action ">Déconnexion</a>
+						{% else %}
+							<a href="{{ path('app_login') }}" class=" list-group-item text-center list-group-item-action">Connectez-vous !
+							</a>
+							<a href="{{ path('app_register')}}" class="list-group-item text-center list-group-item-action ">Inscription</a>
+						{% endif %}
+					</div>
+
+					<a href="{{ path('cart')}}">
+						{% if app.session.get('panier')|length >= 1 %}
+							<i class='bx bxs-cart-download' style='color:#42858C'></i>
+						{% else %}
+							<i class='bx-md bx bx-cart' style='color:#2273BC; '></i>
+						{% endif %}
+					</a>
+
+
+				</div>
+			</nav>
+			{% for message in  app.flashes('success_register') %}
+				<div class="alert alert-info position-absolute top-0  mt-3 m-auto p-4 register col-12 col-md-10 col-lg-6 " role="alert">
+					<span class="fw-semibold">
+						Félicitation</span>,
+					{{ message }}
+				</div>
+			{% endfor %}
+		</header>
+		<main id="swup" class="transition-fade"> {% block body %}{% endblock %}
+			</main>
+			<footer>
+				<aside>
+					<a href="#" data-bs-toggle="modal" data-bs-target="#politique">MENTIONS LÉGALES</a>
+					{{ modal.mention('Mention')}}
+					<a href="#" data-bs-toggle="modal" data-bs-target="#cgv">CGV & CGU</a>
+					{{ modal_cgv.cgv('CGV & CGU')}}
+					<a href="#" data-bs-toggle="modal" data-bs-target="#pol">Politique de confidentialité</a>
+					{{ modal_pol.pol('Politique de confidentialité')}}
+				</aside>
+
+				<p class="text-center">© 2022 par INGINIUS. Créé par REZKI WISSEM, Image de Pexels & Pixabay</p>
+			</footer>
+
+
+			<script>
+				window.axeptioSettings = {
+clientId: "6352bec6c85472350196d292",
+cookiesVersion: "inginus/-fr"
+};
+
+(function (d, s) {
+var t = d.getElementsByTagName(s)[0],
+e = d.createElement(s);
+e.async = true;
+e.src = "//static.axept.io/sdk.js";
+t.parentNode.insertBefore(e, t);
+})(document, "script");
+			</script>
+			<script src="{{ asset('js/app.js')}}"></script>
+			<script src="{{ asset('js/bootstrap.js')}}"></script>
+			<script src="{{ asset('js/app_nav.js')}}"></script>
+			<script src="{{ asset('js/app_api.js')}}"></script>
+			<script src="{{ asset('js/app_register.js')}}"></script>
+			{% block javascripts %}
+				{# Lien JS #}
+			{% endblock %}
+		</body>
+	</html>
