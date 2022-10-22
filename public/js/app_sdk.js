@@ -1,11 +1,10 @@
 window.axeptioSettings = {
-    clientId: "6352bec6c85472350196d292",
+    clientId: "6353c9f4f0df4fd1cd738a1b",
+    cookiesVersion: "inginus/-fr",
 };
-const v  = function(d, s) {
+ 
+(function(d, s) {
     var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-    e.async = true;
-    e.src = "https://static.axept.io/sdk.js";
+    e.async = true; e.src = "//static.axept.io/sdk.js";
     t.parentNode.insertBefore(e, t);
-}
-v(document, "script");
-
+})(document, "script");
