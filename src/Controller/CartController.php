@@ -35,7 +35,7 @@ class CartController extends AbstractController
         
         
 
-        dump($panier);
+        //dump($panier);
 
         return $this->render('cart/index.html.twig', [
             
@@ -56,9 +56,9 @@ class CartController extends AbstractController
 
         
         // on test si la quantité est diponible
-        if($article->getQte() == 0){
-            dd('hello');
-        }
+        // if($article->getQte() == 0){
+        //     dd('hello');
+        // }
         // je verifie si article n'exite pas s'il existe je l'incrémente
         if(empty($panier[$article->getId()])){
             $panier[$article->getId()] = [
