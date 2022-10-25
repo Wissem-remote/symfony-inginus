@@ -59,14 +59,20 @@
                                                                         <a
                                                                         class="btn 
                                                                         {% if panier.qte >= panier.article.qte    %}
-                                                                        isDisabled
+                                                                        disabled
                                                                         {% endif %}
                                                                         {% if panier.qte >= panier.article.qte    %}
                                                                         btn-outline-danger
                                                                         {% else %}
                                                                         btn-outline-success
                                                                         {% endif %}
-                                                                        btn-sm li" href="{{ path('cart_add',{ id : panier.article.id, origin : app.request.attributes.get('_route')} )}}" >
+                                                                        btn-sm li" href="
+                                                                        {% if panier.qte >= panier.article.qte  %}
+                                                                        #
+                                                                        {% else %}
+                                                                        {{ path('cart_add',{ id : panier.article.id, origin : app.request.attributes.get('_route')} )}}
+                                                                        {% endif %}
+                                                                        " >
 
                                                                             <i class="bi bi-plus"></i>
                                                                         </a>

@@ -55,7 +55,10 @@ class CartController extends AbstractController
         $panier = $session->get('panier', []);
 
         
-
+        // on test si la quantité est diponible
+        if($article->getQte() == 0){
+            dd('hello');
+        }
         // je verifie si article n'exite pas s'il existe je l'incrémente
         if(empty($panier[$article->getId()])){
             $panier[$article->getId()] = [

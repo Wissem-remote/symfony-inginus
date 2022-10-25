@@ -38,10 +38,16 @@
        
        <a class="
         {% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte   or article.qte <= 0 %}
-        isDisabled
+        disabled
         {% endif %}
-        m-auto btn btn-success w-75 " href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;">
-
+        m-auto btn btn-success w-75 " href="
+        {% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
+            #
+        {% else %}
+        {{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}
+         {% endif %}
+        " style=" text-shadow:none;">
+       
             Ajouter
         </a>
 

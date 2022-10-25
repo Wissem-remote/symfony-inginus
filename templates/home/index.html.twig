@@ -82,9 +82,15 @@
 												
 												<a class="
 												{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
-												isDisabled
+												disabled
 												{% endif %}
-												btn btn-success" href="{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;">
+												btn btn-success" href="
+												{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
+													#
+												{% else %}
+												{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;
+												{% endif %}
+												">
 													Ajouter
 													</a>
 													
