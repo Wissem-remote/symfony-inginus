@@ -78,8 +78,10 @@ class CartController extends AbstractController
         $session->set('panier',$panier);
 
         if ($origin == "article"){
+            $this->addFlash('success_add_cart', $article);
             return $this->redirectToRoute($origin,['id' => $article->getId()]);
         }else{
+            $this->addFlash('success_add_cart', $article);
             return $this->redirectToRoute($origin);
         }
         

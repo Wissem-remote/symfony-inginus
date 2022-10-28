@@ -43,5 +43,7 @@ section:nth-child(2) article:nth-child(2) p {
     font-size:8vh;
     
 }
-
+.card-body .infos{
+    font-size: 5.9vw;
+}
 }

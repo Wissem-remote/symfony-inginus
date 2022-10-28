@@ -1,12 +1,15 @@
 const register = document.querySelector('.register');
 let i = 0;
 if (register) {
-   setTimeout(()=>register.classList.add('registerShow'),10)
-setInterval(() => {
+    setTimeout(() => register.classList.add('registerShow'), 10)
     
-    i++;
-    if (i > 4) {
-        register.classList.remove('registerShow');
-    }
-},1000) 
+    setInterval(() => {
+        
+        i++;
+        if (i > 4) {
+            register.classList.remove('registerShow');
+        }
+    },1000) 
 }
+
+

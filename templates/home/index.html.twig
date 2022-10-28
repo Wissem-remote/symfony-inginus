@@ -60,50 +60,50 @@
 					<div class=" reveal row gx-5 w-100 m-auto main-carousel" data-flickity='{ "contain": true, "freeScroll": true,"autoPlay": true}'>
 
 
-
+							{# cart artcile #}
 							{% for article in articles %}
-						<div class="col-12 me-4 col-lg-3 col-md-4 col-sm-6 carousel-cell">
+								<div class="col-12 me-4 col-lg-3 col-md-4 col-sm-6 carousel-cell">
 
-								<div class="card">
-									<img src="{{ asset('/uploads/article/' ~ article.image|default('default/Drone_C1.jpg'))}}" height="200" style="object-fit:cover;" class="card-img-top" alt="{{ article.nom}}">
-									<div class="card-body">
+										<div class="card">
+											<img src="{{ asset('/uploads/article/' ~ article.image|default('default/Drone_C1.jpg'))}}" height="200" style="object-fit:cover;" class="card-img-top" alt="{{ article.nom}}">
+											<div class="card-body">
 
-											<div class="infos">
-												<p class="card-title">{{ article.nom }}</p>
-												<p class="card-text">Prix : {{ article.prix}} €</p>
-											</div>
-											<div class="info">
-												{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte  or article.qte <= 0 %}
-												<p class="text-danger text-center fw-semibold ">EN RUPTURE DE STOCK</p>
-												{% endif %}
-											</div>
-											<div class="infos">
+													<div class="infos">
+														<p class="card-title">{{ article.nom }}</p>
+														<p class="card-text">Prix : {{ article.prix}} €</p>
+													</div>
+													<div class="info">
+														{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte  or article.qte <= 0 %}
+														<p class="text-danger text-center fw-semibold ">EN RUPTURE DE STOCK</p>
+														{% endif %}
+													</div>
+													<div class="infos">
+													
+														
+														<a class="
+														{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
+														disabled
+														{% endif %}
+														btn btn-success" href="
+														{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
+															#
+														{% else %}
+														{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;
+														{% endif %}
+														">
+															Ajouter
+															</a>
+															
+															
+														<a href="{{ path('article',{id : article.id})}}" class="btn btn-primary" style=" text-shadow:none;">
+															Voir
+														</a>
+													</div>
 											
-												
-												<a class="
-												{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
-												disabled
-												{% endif %}
-												btn btn-success" href="
-												{% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
-													#
-												{% else %}
-												{{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}" style=" text-shadow:none;
-												{% endif %}
-												">
-													Ajouter
-													</a>
-													
-													
-												<a href="{{ path('article',{id : article.id})}}" class="btn btn-primary" style=" text-shadow:none;">
-													Voir
-												</a>
 											</div>
-									
+										</div>
 									</div>
-								</div>
-							</div>
-						{% endfor %}
+							{% endfor %}
 						</div>
 					
 
@@ -116,7 +116,7 @@
 					<div class=" reveal row gx-5 w-100 m-auto main-carousel" data-flickity='{ "contain": true, "freeScroll": true,"autoPlay": true}'>
 
 
-
+							{# cart accessoire #}
 							{% for tool in tools %}
 								<div class="col-12 me-4 col-lg-3 col-md-4 col-sm-6 carousel-cell">
 
