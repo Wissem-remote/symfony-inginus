@@ -101,7 +101,7 @@ class ProfileController extends AbstractController
     public function message(ManagerRegistry $doctrine): Response
     {
         $messages = $doctrine->getRepository(Message::class)->findBy(['user' => $this->getUser()]);
-        dump($messages);
+        
         return $this->render('profile/message.html.twig', [
             'messages' => array_reverse($messages),
         ]);
