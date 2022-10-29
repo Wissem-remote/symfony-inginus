@@ -122,7 +122,7 @@ class ProfileController extends AbstractController
             array_push($info,[$data['message'],'client']);
             $message->setState(false);
             $message->setContent($info);
-            dump($info);
+            // dump($info);
             $em->persist($message);
             $em->flush();
 
@@ -142,7 +142,7 @@ class ProfileController extends AbstractController
         $user = $doctrine->getRepository(User::class)->find($this->getUser()->getId());
         $em = $doctrine->getManager();
         
-        dump($user);
+        // dump($user);
         $form = $this->createFormBuilder()
                     ->add('oldPassword', PasswordType::class)
                     ->add('newPassword', PasswordType::class, [
@@ -170,7 +170,7 @@ class ProfileController extends AbstractController
 
             if($userPasswordHasher->isPasswordValid($user, $data['oldPassword'])){
                 $user->setPassword($userNewPassword);
-                dump($user);
+                // dump($user);
 
                 $em->persist($user);
                 $em->flush();

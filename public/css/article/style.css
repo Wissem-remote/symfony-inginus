@@ -1,0 +1,3 @@
+.imgs{
+    animation: move 2s cubic-bezier(.5, 0, 0, 1);
+}

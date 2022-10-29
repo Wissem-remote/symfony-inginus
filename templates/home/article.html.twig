@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/article/style.css')}}">
 {% endblock %}
 
 
@@ -20,27 +21,27 @@
     <aside class="row">
 
         <article class="col-12 col-lg-8 h-100 p-2 border border-1 d-flex justify-content-center ">
-        <img  class="figure-img img-fluid rounded" src="{{ asset('uploads/article/' ~ article.image|default('default/Drone_C1.jpg'))}}" width="80%" height="100%" alt="{{ article.nom}}" />
+        <img  class=" imgs figure-img img-fluid rounded" src="{{ asset('uploads/article/' ~ article.image|default('default/Drone_C1.jpg'))}}" width="80%" height="100%" alt="{{ article.nom}}" />
         </article>
 
         <article class="col-12 mt-4  col-lg-4 mt-lg-0 h-100  p-3 border border-1  d-flex flex-column ">
-        <h3 class="text-center p-2">Titre : {{ article.nom}} </h3>
+        <h3 class="text-center p-2 imgs ">Titre : {{ article.nom}} </h3>
         
-        <p class="text-center p-2">Description : {{ article.content}}</p>
+        <p class="text-center p-2 imgs ">Description : {{ article.content}}</p>
 
-        <p class="text-center p-2 fs-3">Prix : {{ article.prix}} €</p>
+        <p class="text-center p-2 fs-3 imgs ">Prix : {{ article.prix}} €</p>
         
         {% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte  or article.qte <= 0 %}
-        <p class="text-danger text-center fs-3 p-2 fw-semibold">EN RUPTURE DE STOCK</p>
+        <p class="text-danger text-center fs-3 p-2 fw-semibold imgs">EN RUPTURE DE STOCK</p>
         {% else %}
-        <p class="text-center p-2 fs-3 text-success">En Stock</p>
+        <p class="text-center p-2 fs-3 text-success imgs ">En Stock</p>
         {% endif %}
        
        <a class="
         {% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte   or article.qte <= 0 %}
         disabled
         {% endif %}
-        m-auto btn btn-success w-75 " href="
+        m-auto btn btn-success w-75 imgs" href="
         {% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte or article.qte <= 0  %}
             #
         {% else %}

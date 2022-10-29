@@ -5,7 +5,7 @@ if (u) {
     
     setInterval(() => {
         e++;
-        if (e > 4) {
+        if (e > 2) {
             u.classList.remove('registerShow');
         }
     },1000) 
