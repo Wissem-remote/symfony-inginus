@@ -10,7 +10,8 @@
 	<div class="col-md-8 h-100 p-5 rounded-3 border border-2 border-secondary mb-4">
 
 
-<img style="object-fit: cover; border-radius:75px!important;" src="{{ "/uploads/article/"~article.image}}" alt="{{ article.nom}}" class="  card-img-top p-5" width="100%" height="40%">
+<img style="object-fit: cover; border-radius:75px!important;" src="{{ "/uploads/article/"~article.image|default('default/Drone_C1.jpg')}}" alt="{{ article.nom}}" class="  card-img-top p-5" width="100%" height="40%">
+
 
 	</div>
 
