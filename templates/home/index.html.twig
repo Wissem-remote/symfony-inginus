@@ -2,9 +2,9 @@
 
 {% block title %}Acceuil{% endblock %}
 {% block stylesheets %}
-<script type="text/javascript" src="{{ asset('js/app_sdk.js')}}"></script>
-<script type="text/javascript" src="//cdn.iubenda.com/cs/ccpa/stub.js"></script>
-<script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+<script  src="{{ asset('js/app_sdk.js')}}"></script>
+<script  src="//cdn.iubenda.com/cs/ccpa/stub.js"></script>
+<script  src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
 <link rel="stylesheet" href="{{asset('css/home/style.css')}}">
 <link rel="stylesheet" href="{{asset('css/home/style_media_tablette.css')}}">
 <link rel="stylesheet" href="{{asset('css/home/style_media_mobile.css')}}">
@@ -28,7 +28,7 @@
 	<section>
 
 		<article >
-
+			<h5></h5>
 			<p class="text-white reveal">
 				Découvrez<br>
 				Nos Derniers<br>
@@ -40,9 +40,7 @@
 
 		<article style="background: linear-gradient(39deg, #2617175e, transparent),
 		url('{{ asset('img/Drone_C6_1.jpg')}}') no-repeat; background-size: cover;">
-
-
-
+			<h5></h5>
             <p class="text-white reveal">
 
 				Professional<br>
@@ -56,7 +54,7 @@
 		<h2 class="reveal "><span>Nos</span> Produits</h2>
 			
 			<article class="container">
-
+					<h6></h6>
 					<div class=" reveal row gx-5 w-100 m-auto main-carousel" data-flickity='{ "contain": true, "freeScroll": true,"autoPlay": true}'>
 
 
@@ -112,7 +110,7 @@
 				<h2 class="reveal"><span>Nos</span> Accessoires</h2>
 			
 			<article class="container">
-
+						<h6></h6>
 					<div class=" reveal row gx-5 w-100 m-auto main-carousel" data-flickity='{ "contain": true, "freeScroll": true,"autoPlay": true}'>
 
 
@@ -156,9 +154,9 @@
 							{% endfor %}
 					</div>
 			</article>
-			<br/>
-			<br/>
-			<br/>
+			<br>
+			<br>
+			<br>
     </section>
 
 

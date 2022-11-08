@@ -32,15 +32,15 @@
 		<p class="fs-4 fw-semibold ">Changer Votre mot de passe </p>
 		{{ form_start(form)}}
 		{{ form_row(form.oldPassword,{'label' : 'Votre Ancien Mot de Passe' ,'attr' :{'placeholder': 'Votre ancien mot de passe'}})}}
-{{ form_row(form.newPassword,{'label' : 'Votre Nouveaux Mot de Passe' ,'attr' :{'placeholder': 'Votre nouveaux mot de passe','class' : 'input'}})}}
+		{{ form_row(form.newPassword,{'label' : 'Votre Nouveaux Mot de Passe' ,'attr' :{'placeholder': 'Votre nouveaux mot de passe','class' : 'input'}})}}
 
-		<button class="btn btn-primary col-12 col-lg-3 col-md-8" type="submit"> Changer </button>
-		{{ form_end(form)}}
-		</div>
-		<hr class="border border-secondary border-1 mt-3 opacity-75">
+				<button class="btn btn-primary col-12 col-lg-3 col-md-8" type="submit"> Changer </button>
+				{{ form_end(form)}}
+				</div>
+				<hr class="border border-secondary border-1 mt-3 opacity-75">
 
-	</section>
-{% endblock %}
+			</section>
+		{% endblock %}
 
 {% block javascripts %}
 	<script src="{{asset('js/app_input.js')}}"></script>

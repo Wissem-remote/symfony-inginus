@@ -36,8 +36,8 @@
         {% else %}
         <p class="text-center p-2 fs-3 text-success imgs ">En Stock</p>
         {% endif %}
-       
-       <a class="
+        
+        <a class="
         {% if panier[article.id] is defined  and panier[article.id]['qte'] >= article.qte   or article.qte <= 0 %}
         disabled
         {% endif %}
@@ -46,9 +46,8 @@
             #
         {% else %}
         {{ path('cart_add',{ id : article.id, 'origin':app.request.attributes.get('_route')} )}}
-         {% endif %}
+        {% endif %}
         " style=" text-shadow:none;">
-       
             Ajouter
         </a>
 
