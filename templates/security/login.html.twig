@@ -23,7 +23,9 @@
                 {% endif %}
 
                 <h2 class="h3 mb-3 font-weight-normal">CONNECTEZ VOUS </h2>
-                <span>avec vos informations</span>
+                <span class="mb-3" >avec vos informations </span>
+                <br>
+                <span class="yo" >Vous n'avez pas de compte ? <a href="{{path('app_register')}}" class="text-decoration-none fs-4"> S'inscrire</a> </span>
                 {# <label for="inputEmail" class="m-2">Email</label> #}
                 <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mt-5" autocomplete="email" required autofocus>
                 {# <label for="inputPassword" class="m-2">Password</label> #}

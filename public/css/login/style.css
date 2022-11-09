@@ -19,6 +19,13 @@ span{
     text-shadow: 0 1px 0 black;
     animation: move ease 1s;
 }
+.yo{
+    color:whitesmoke;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-shadow: 0 1px 0 black;
+    animation: move ease 1s;
+}
 .form-control{
     font-size: 1.3rem;
     border-radius: 10px;
