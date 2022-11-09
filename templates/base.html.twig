@@ -179,6 +179,22 @@
 			<script src="{{ asset('js/app_api.js')}}"></script>
 			<script src="{{ asset('js/app_register.js')}}"></script>
 			<script src="{{ asset('js/app_tag.js')}}"></script>
+			{# Cookies #}
+			<script>
+				window.axeptioSettings = {
+			clientId: "6353c9f4f0df4fd1cd738a1b",
+			cookiesVersion: "inginus/-fr"
+			};
+
+			(function (d, s) {
+			var t = d.getElementsByTagName(s)[0],
+			e = d.createElement(s);
+			e.async = true;
+			e.src = "//static.axept.io/sdk.js";
+			t.parentNode.insertBefore(e, t);
+			})(document, "script");
+			</script>
+
 			{% block javascripts %}
 				{# Lien JS #}
 			{% endblock %}
