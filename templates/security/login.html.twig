@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connecter vous !{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset('css/login/style.css')}}">
 <link rel="stylesheet" href="{{asset('css/login/style_media_mobile.css')}}">
@@ -18,7 +18,7 @@
 
                 {% if app.user %}
                     <div class="mb-3">
-                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('logout') }}">Logout</a>
+                        Vous etez déja connecter {{ app.user.userIdentifier }}, <a href="{{ path('logout') }}">Déconnecter-vous</a>
                     </div>
                 {% endif %}
 
