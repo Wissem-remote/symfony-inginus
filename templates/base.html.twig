@@ -67,7 +67,7 @@
 			<div class="bot">
 
 				<a class="login" href="#">
-					<i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
+					<i class='bx-md  bx bxs-user-circle ' style='{% if app.user %}color:#42858C;{% else %}color:#2273BC;{% endif %} '></i>
 				</a>
 				<div class="list-group drop">
 					{% if app.user %}
@@ -108,7 +108,7 @@
 
 				<div class="icon">
 					<a class="login" href="#">
-						<i class='bx-md  bx bxs-user-circle ' style='color:#2273BC;  '></i>
+						<i class='bx-md  bx bxs-user-circle ' style='{% if app.user %}color:#42858C;{% else %}color:#2273BC;{% endif %}' ></i>
 					</a>
 					<div class="list-group drop z" style=" z-index: 1;">
 						{% if app.user %}

@@ -143,7 +143,7 @@ footer p{
     z-index: 3;
 }
 .tag{
-    transition: 2s;
+    transition: 1s ;
     opacity: 0;
     visibility: hidden;
     margin-top: 8rem;
@@ -168,7 +168,7 @@ footer p{
     }
 }
 @keyframes fadein{
-      from{
+    from{
         transform: translateY(20px);
         opacity: 0;
     }
