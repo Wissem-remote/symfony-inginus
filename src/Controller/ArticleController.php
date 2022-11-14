@@ -98,7 +98,14 @@ class ArticleController extends AbstractController
             $em->persist($article);
             $em->flush();
             // do anything else you need here, like send an email
-            $this->addFlash('success_update', 'Votre Article à été ajouter');
+
+            $notif = 'Votre Article à été ajouter';
+            //dd($form->getData()->getType());
+            if($form->getData()->getType() == 'Accessoire'){
+                $notif = 'Votre Accessoire à été ajouter';
+            }
+
+            $this->addFlash('success_update', $notif);
 
             return $this->redirectToRoute('admin');
         }
@@ -156,7 +163,12 @@ class ArticleController extends AbstractController
             $em->persist($article);
             $em->flush();
             // do anything else you need here, like send an email
-            $this->addFlash('success_update', 'Votre Accessoire à été modifier');
+            $notif = 'Votre Article à été modifier';
+            //dd($form->getData()->getType());
+            if ($article->getType() == 'Accessoire') {
+                $notif = 'Votre Accessoire à été modifier';
+            }
+            $this->addFlash('success_update', $notif);
 
             return $this->redirectToRoute('admin');
         }
@@ -183,7 +195,14 @@ class ArticleController extends AbstractController
 
         $em->flush();
 
-        $this->addFlash('success_delete', 'Votre article à été suprimer');
+
+        $notif = 'Votre Article à été suprimer';
+        //dd($form->getData()->getType());
+        if ($article->getType() == 'Accessoire') {
+            $notif = 'Votre Accessoire à été suprimer';
+        }
+
+        $this->addFlash('success_delete', $notif);
 
         return $this->redirectToRoute('admin');
     }
