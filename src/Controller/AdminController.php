@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Message;
 use App\Entity\Order;
+use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -31,9 +32,13 @@ class AdminController extends AbstractController
     public function orderDelete(ManagerRegistry $doctrine, Order $order)
     {
         $em = $doctrine->getManager();
-
+        $message = $doctrine->getRepository(Message::class)->findOneBy(['orders'=> $order->getId()]);
+        //dd($message);
+        if($message){
+            $em->remove($message);
+        }
         $em->remove($order);
-        $em->flush();
+        $em->flush($order);
         $this->addFlash('success_delete', 'la commande à été suprimer');
         return $this->reDirectToRoute('admin_order');
     }

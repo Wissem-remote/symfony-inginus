@@ -23,11 +23,11 @@
 </a>
 <a href="{{path('admin_order')}}" class="btn btn-primary m-2">
 	Commandes
-	<span class="badge text-bg-danger">
 		{% if notificationOrder|length >= 1  %}
+	<span class="badge text-bg-danger">
 			{{ notificationOrder|length }}
-		{% endif %}
 	</span>
+		{% endif %}
 </a>
 <a href="{{path('admin_messager')}}" class="btn btn-warning m-2">
 	Message
