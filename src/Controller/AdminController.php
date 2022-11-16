@@ -33,7 +33,7 @@ class AdminController extends AbstractController
     {
         $em = $doctrine->getManager();
         $message = $doctrine->getRepository(Message::class)->findOneBy(['orders'=> $order->getId()]);
-        //dd($message);
+        
         if($message){
             $em->remove($message);
         }
