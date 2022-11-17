@@ -60,18 +60,20 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            foreach ($order->getPanier() as  $value) {
-                $article = $doctrine->getRepository(Article::class)->find($value['article']->getId());
-                $article->setQte($article->getQte() - $value['qte']);
-                $em->persist($article);
-                $em->flush();
+            if(!$order->isState()){
+                foreach ($order->getPanier() as  $value) {
+                    $article = $doctrine->getRepository(Article::class)->find($value['article']->getId());
+                    $article->setQte($article->getQte() - $value['qte']);
+                    $em->persist($article);
+                    $em->flush();
+                }
             }
+            
             $order->setState(true);
             $em->persist($order);
             $em->flush();
 
-            $this->addFlash('success_message', 'Félicitation votre Commande à été traité');
+            $this->addFlash('success_order', 'Félicitation votre Commande à été traité');
 
             return $this->redirectToRoute('admin_order');
         }
