@@ -116,7 +116,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/article/{id}', name: 'article')]
+    #[Route('/article/{slug}-{id}', name: 'article', requirements:['slug'=>'[a-z0-9\-]*'])]
     public function article(Article $article, SessionInterface $session): Response
     {
         $panier = $session->get('panier', []);

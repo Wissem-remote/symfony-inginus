@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -125,5 +126,9 @@ class Article
         $this->content = $content;
 
         return $this;
+    }
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->getNom()); 
     }
 }
