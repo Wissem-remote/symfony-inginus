@@ -79,7 +79,7 @@ class CartController extends AbstractController
 
         if ($origin == "article"){
             $this->addFlash('success_add_cart', $article);
-            return $this->redirectToRoute($origin,['id' => $article->getId()]);
+            return $this->redirectToRoute($origin,['id' => $article->getId(), 'slug' => $article->getSlug()]);
         }else{
             $this->addFlash('success_add_cart', $article);
             return $this->redirectToRoute($origin);
