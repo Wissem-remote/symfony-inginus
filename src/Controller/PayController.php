@@ -96,14 +96,15 @@ class PayController extends AbstractController
         // je récupere mon total des article
         $total = $session->get('total', []);
 
-        // on récupere id de la dérnier commande passé
+        // on récupere id de la dérnier commande passé en session
         $idStripe = $session->get('stripe',[]);
 
+        // je vérifie si l'id est bien récuperé
         if (empty($idStripe)){
             return $this->redirectToRoute('home');
         }
 
-        // on créee un stripe client grace à notre clé
+        // on créee un object stripe client grace à notre clé
         $client = new StripeClient($stripeSk);
 
         // on recupére le checkout session en retrive grace id de la dérnier commande

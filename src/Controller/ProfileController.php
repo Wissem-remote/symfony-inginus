@@ -155,8 +155,8 @@ class ProfileController extends AbstractController
                                         'message' => "S'il vous plait entrer votre mot passe.",
                                     ]),
                                     new Regex([
-                                        'pattern' => '/(?=[0-9a-zA-Z.*]+$)^(?=.*[A-Z])(?=.{6,}).*$/',
-                                        'message' => "Votre mot de passe doit contenir 6 caractères et une majuscule ",
+                                        'pattern' => '/(?=[0-9a-zA-Z.*]+$)^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{14,}).*$/',
+                                        'message' => "Le mot de passe doit contenir 14 caractères et une majuscule un minuscule et un chiffre",
                                     ]),
                                 ],
                             ])
