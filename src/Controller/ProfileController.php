@@ -100,7 +100,7 @@ class ProfileController extends AbstractController
     #[Route('/profile/message', name: 'profile_message')]
     public function message(ManagerRegistry $doctrine): Response
     {
-        $order = $doctrine->getRepository(Order::class)->findAll();
+        $order = $doctrine->getRepository(Order::class)->findby(['user' => $this->getUser()]);
         $message= [];
         foreach ($order as  $value) {
             $orders = $doctrine->getRepository(Message::class)->findBy(['orders' => $value]);
