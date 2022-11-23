@@ -100,10 +100,16 @@ class ProfileController extends AbstractController
     #[Route('/profile/message', name: 'profile_message')]
     public function message(ManagerRegistry $doctrine): Response
     {
-        $messages = $doctrine->getRepository(Message::class)->findBy(['user' => $this->getUser()]);
-        
+        $order = $doctrine->getRepository(Order::class)->findAll();
+        $message= [];
+        foreach ($order as  $value) {
+            $orders = $doctrine->getRepository(Message::class)->findBy(['orders' => $value]);
+            if(!empty($orders)){
+                array_push($message,$orders);
+            }
+        }
         return $this->render('profile/message.html.twig', [
-            'messages' => array_reverse($messages),
+            'messages' => array_reverse($message),
         ]);
     }
     #[Route('/profile/message/{id}', name: 'profile_message_detail')]

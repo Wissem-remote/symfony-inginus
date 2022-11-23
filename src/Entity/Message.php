@@ -26,8 +26,6 @@ class Message
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'messages')]
-    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     private ?Order $orders = null;
@@ -85,17 +83,7 @@ class Message
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
 
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
     public function getOrders(): ?Order
     {
