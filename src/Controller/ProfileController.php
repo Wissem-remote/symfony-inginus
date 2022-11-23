@@ -75,7 +75,7 @@ class ProfileController extends AbstractController
             $mailer->send($email);
             // on ajoute nos information dans notre objet
             $message->setCreatedAt(new \DateTimeImmutable);
-            $message->setUser($this->getUser());
+            
             $message->setOrders($order);
             $message->setState(false);
             $message->setObjet($data['objet']);
