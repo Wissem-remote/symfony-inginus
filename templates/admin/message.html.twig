@@ -40,7 +40,6 @@
 		<thead>
 			<tr>
 				<th scope="col">ID</th>
-				<th scope="col">Nom Client</th>
 				<th scope="col">Ref Commande</th>
 				<th scope="col">Objet</th>
 				<th scope="col">Date création</th>
@@ -48,13 +47,13 @@
 				<th scope="col">Action</th>
 			</tr>
 		</thead>
-
+		
 		<tbody>
 			{% for messager in  messagers %}
 
 				<tr>
 					<th class="ls-lg" scope="row">{{ messager.id}}</th>
-					<td>{{ messager.user.name}}</td>
+					
 					<td>{{ messager.orders.reference}}</td>
 					<td>{{ messager.objet}}</td>
 					<td>{{ messager.createdAt|date('d-m-Y')}}</td>

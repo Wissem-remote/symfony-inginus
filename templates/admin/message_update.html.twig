@@ -7,7 +7,6 @@
 
 {% block body %}
 <div class=" m-auto w-75 ">
-    <h2 class="pb-3"> Message du client : {{ messager.user.name }} </h2>
     <p class="fw-semi-bold fs-4"> Objet : {{messager.objet}} </p>
     <p> Reference de Commande : {{messager.orders.reference}} </p>
         {% for message in messager.content %}
