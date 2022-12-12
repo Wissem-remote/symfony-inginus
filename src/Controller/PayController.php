@@ -119,7 +119,8 @@ class PayController extends AbstractController
         $adressDetail = $result->shipping_details->address;
 
         $nameDetail = $result->shipping_details->name;
-
+        // chr génere chaine de carractaire à partir d'un octet
+        // substr permet de ségementé une chaine de carractaire 
         $reference = chr(substr("000" . (rand(1, 9) + 65), -3)).rand(1000,9999);
 
         $order = new Order;

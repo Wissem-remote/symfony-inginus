@@ -148,7 +148,7 @@ class ProfileController extends AbstractController
         $user = $doctrine->getRepository(User::class)->find($this->getUser()->getId());
         $em = $doctrine->getManager();
         
-        // dump($user);
+        // je créer mon formulaire de rénitalisation mot passe
         $form = $this->createFormBuilder()
                     ->add('oldPassword', PasswordType::class)
                     ->add('newPassword', PasswordType::class, [
@@ -167,23 +167,29 @@ class ProfileController extends AbstractController
                                 ],
                             ])
                     ->getForm();
-        
+        // recupére mon  formulaire passé
         $form->handleRequest($request);
-
+        // je test si le formulaire  été soumis et valider
         if($form->isSubmitted() && $form->isValid()){
+            // je récupére les information passé dans formulaire
             $data  = $form->getData();
+            // je hashe le mot passe grace au UserPasswordHasherInterface
             $userNewPassword = $userPasswordHasher->hashPassword($user, $data['newPassword']);
 
+            // test le mot passe actuel avec le mot passe pasé 
             if($userPasswordHasher->isPasswordValid($user, $data['oldPassword'])){
+                // si utilisateur met le bon mot passe  je le set dans notre objet user
                 $user->setPassword($userNewPassword);
-                // dump($user);
-
+                
+                // je persist le nouveaux mot passe user 
                 $em->persist($user);
+                // je l'enregistre le nouveaux mot oasse
                 $em->flush();
-
+                // j'afffiche un message pour informer l'utilisateur que le mot passe à été rénitalisé
                 $this->addFlash('success_pass',"Félicitation votre mot-passe vient d'etre modifier !");
                 
             }else{
+                // si le mot de passe ne correspond j'informe l'utilisateur que le mot passe ne correspond pas
                 $this->addFlash('warning_pass', "Désoler votre mot-passe ne correspond pas !");
             }
         }
